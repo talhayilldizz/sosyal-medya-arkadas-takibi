@@ -1,6 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-</AnchorPane>
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f4f6f8;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserProfileController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnBack" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="&lt; Geri Dön" textFill="#5b5b5b">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Label maxWidth="1.7976931348623157E308" text="Kullanıcı Profili" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                </Label>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            </padding>
+            <children>
+
+                <VBox alignment="TOP_CENTER" maxWidth="350.0" minWidth="300.0" prefHeight="400.0" prefWidth="305.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-padding: 30;">
+                    <children>
+                        <Label fx:id="lblName" text="\@Kullanici">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblEmail" text="kullanici@gmail.com" textFill="#868686">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+
+                        <Separator prefWidth="200.0" />
+
+                        <Label fx:id="lblBio" text="Marmara Üniversitesi - Bilgisayar Mühendisliği" textAlignment="CENTER" wrapText="true" />
+
+                        <Separator prefWidth="200.0" />
+
+                        <Button fx:id="btnEditProfile" prefHeight="46.0" prefWidth="248.0" style="-fx-background-color: #2196f3; -fx-background-radius: 5; -fx-cursor: hand;" text="Hesabı Düzenle" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btnDeleteAccount" prefHeight="46.0" prefWidth="248.0" style="-fx-background-color: #ff0a0a; -fx-background-radius: 5; -fx-cursor: hand;" text="Hesabı Sil" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+
+                <VBox prefHeight="516.0" prefWidth="590.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                    <children>
+
+                        <HBox spacing="20.0" />
+                          <VBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);">
+                              <children>
+                                  <Label fx:id="lblFollowing" text="130" textFill="#1976d2">
+                                      <font>
+                                          <Font name="System Bold" size="28.0" />
+                                      </font>
+                                  </Label>
+                                  <Label text="Takip Edilen" textFill="#7c7c7c" />
+                              </children>
+                          </VBox>
+                          <VBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);">
+                              <children>
+                                  <Label fx:id="lblFollowers" text="145" textFill="#2e7d32">
+                                      <font>
+                                          <Font name="System Bold" size="28.0" />
+                                      </font>
+                                  </Label>
+                                  <Label text="Takipçi" textFill="#7c7c7c" />
+                              </children>
+                          </VBox>
+
+                        <HBox alignment="TOP_CENTER" prefHeight="74.0" prefWidth="588.0" spacing="20.0">
+                            <children>
+                                <Button fx:id="btnInstagram" prefHeight="60.0" prefWidth="140.0" style="-fx-background-color: #E1306C; -fx-background-radius: 5; -fx-cursor: hand;" text="Instagram" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnTwitter" prefHeight="60.0" prefWidth="140.0" style="-fx-background-color: #2196f3; -fx-background-radius: 5; -fx-cursor: hand;" text="Twitter" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnTiktok" prefHeight="60.0" prefWidth="140.0" style="-fx-background-color: #ff9900; -fx-background-radius: 5; -fx-cursor: hand;" text="TikTok" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                        </HBox>
+
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>
