@@ -1,0 +1,46 @@
+package com.arkadastakibi.controller;
+import com.arkadastakibi.model.User;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class UserProfileController implements Initializable{
+    @FXML
+    private Label lblName;
+    @FXML
+    private Label lblEmail;
+    @FXML
+    private Label lblBio;
+    @FXML
+    private Label lblFollowers;
+    @FXML
+    private Label lblFollowing;
+    @FXML
+    private Button btnEditProfile;
+    @FXML
+    private Button btnDeleteAccount;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadUserData();
+    }
+
+
+    private void loadUserData(){
+        User user = new User(1,"TestAd","TestSoyad","Test","test@test.com","Yeni Hesap");
+
+        user.setFollowingCount(100);
+        user.setFollowerCount(100);
+
+        lblName.setText(user.getUsername());
+        lblEmail.setText(user.getEmail());
+        lblBio.setText(user.getBio());
+        lblFollowers.setText(String.valueOf(user.getFollowerCount()));
+        lblFollowing.setText(String.valueOf(user.getFollowingCount()));
+    }
+}
