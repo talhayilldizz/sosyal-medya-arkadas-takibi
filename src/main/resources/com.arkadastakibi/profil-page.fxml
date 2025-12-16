@@ -14,7 +14,7 @@
     <top>
         <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="btnBack" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="&lt; Geri Dön" textFill="#5b5b5b">
+                <Button  fx:id="btnBack" onAction="#AnaSayfayaGeriDon" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="&lt; Geri Dön" textFill="#5b5b5b">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>

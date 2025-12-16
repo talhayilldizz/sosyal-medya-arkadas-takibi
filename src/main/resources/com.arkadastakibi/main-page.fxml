@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<BorderPane prefHeight="800" prefWidth="1200" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="com.arkadastakibi.controller.MainPageController" prefHeight="800" prefWidth="1200" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
 
     <!-- LEFT SIDEBAR -->
     <left>
@@ -29,8 +29,8 @@
                     <Label text="N" textFill="WHITE" />
                 </StackPane>
 
-                <Label text="Hesap ismi" />
-                <Button prefWidth="120" text="Profile" />
+                <Label fx:id="lblAccountName" text="Hesap ismi" />
+                <Button onAction="#ProfileGit" prefWidth="120" text="Profile" />
             </VBox>
 
             <Separator />
