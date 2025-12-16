@@ -36,7 +36,7 @@ public class LoginController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         btnLogin.setOnAction(event -> handleLogin());
 
-        linkRegister.setOnAction(event -> System.out.println("Kayıt ol sayfasına gidilecek..."));
+        linkRegister.setOnAction(event -> navigateToRegister());
     }
 
     private void handleLogin() {
@@ -68,4 +68,20 @@ public class LoginController implements Initializable {
             System.out.println("Hatali kullanici adi veya sifre!");
         }
     }
+
+    private void navigateToRegister(){
+        try{
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/com.arkadastakibi/register.fxml"));
+            Parent root =loader.load();
+
+            Stage stage= (Stage) linkRegister.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Hata: Register sayfası yüklenemedi. Dosya ismini kontrol et!");
+        }
+    }
+
 }
