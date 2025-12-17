@@ -12,9 +12,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arkadastakibi.controller.RegisterPageController">
+<AnchorPane prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arkadastakibi.controller.RegisterPageController">
     <children>
-        <VBox alignment="CENTER_LEFT" layoutX="225.0" layoutY="30.0" maxWidth="400.0" prefWidth="350.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="30.0">
+        <VBox alignment="CENTER_LEFT" layoutX="225.0" layoutY="20.0" maxWidth="400.0" prefWidth="350.0" spacing="12.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="20.0">
             <children>
 
                 <VBox alignment="CENTER" spacing="5.0">
@@ -31,18 +31,48 @@
                         </Label>
                     </children>
                     <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="5.0" />
                     </VBox.margin>
                 </VBox>
 
-                <VBox spacing="8.0">
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="Ad" textFill="#495057">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtFirstName" promptText="Adınız" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 8;">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                    </children>
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="Soyad" textFill="#495057">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtLastName" promptText="Soyadınız" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 8;">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                    </children>
+                </VBox>
+
+                <VBox spacing="5.0">
                     <children>
                         <Label text="Kullanıcı Adı" textFill="#495057">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtUsername" promptText="kullaniciadi" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 10;">
+                        <TextField fx:id="txtUsername" promptText="kullaniciadi" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 8;">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -50,14 +80,14 @@
                     </children>
                 </VBox>
 
-                <VBox spacing="8.0">
+                <VBox spacing="5.0">
                     <children>
                         <Label text="E-posta Adresi" textFill="#495057">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtEmail" promptText="ornek@email.com" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 10;">
+                        <TextField fx:id="txtEmail" promptText="ornek@email.com" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 8;">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -65,14 +95,14 @@
                     </children>
                 </VBox>
 
-                <VBox spacing="8.0">
+                <VBox spacing="5.0">
                     <children>
                         <Label text="Şifre" textFill="#495057">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <PasswordField fx:id="txtPassword" promptText="••••••••" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 10;">
+                        <PasswordField fx:id="txtPassword" promptText="••••••••" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 8;">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -80,14 +110,14 @@
                     </children>
                 </VBox>
 
-                <VBox spacing="8.0">
+                <VBox spacing="5.0">
                     <children>
                         <Label text="Şifre Tekrarı" textFill="#495057">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <PasswordField fx:id="txtConfirmPassword" promptText="••••••••" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 10;">
+                        <PasswordField fx:id="txtConfirmPassword" promptText="••••••••" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 8;">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -95,11 +125,13 @@
                     </children>
                 </VBox>
 
-                <Button fx:id="btnRegister" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #1e88e5; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 16; -fx-font-weight: bold; -fx-cursor: hand; -fx-pref-height: 50;" text="Kayıt Ol">
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </Button>
+                <Label fx:id="lblMessage" alignment="CENTER" maxWidth="1.7976931348623157E308" text="" wrapText="true">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+
+                <Button fx:id="btnRegister" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #1e88e5; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 16; -fx-font-weight: bold; -fx-cursor: hand; -fx-pref-height: 45;" text="Kayıt Ol" />
 
                 <VBox alignment="CENTER" spacing="5.0">
                     <children>
@@ -114,14 +146,11 @@
                             </font>
                         </Hyperlink>
                     </children>
-                    <VBox.margin>
-                        <Insets top="5.0" />
-                    </VBox.margin>
                 </VBox>
             </children>
 
             <padding>
-                <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
             </padding>
 
             <effect>

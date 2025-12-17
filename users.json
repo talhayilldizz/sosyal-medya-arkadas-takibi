@@ -1,5 +1,26 @@
 [
-  {
-
-  }
+    {
+        "firstName": "talha",
+        "lastName": "yıldız",
+        "password": "1234",
+        "twitter": null,
+        "tiktok": null,
+        "bio": null,
+        "id": 1,
+        "instagram": null,
+        "email": "talha@gmail.com",
+        "username": "talhayildiz"
+    },
+    {
+        "firstName": "burak",
+        "lastName": "iskar",
+        "password": "1234",
+        "twitter": null,
+        "tiktok": null,
+        "bio": null,
+        "id": 2,
+        "instagram": null,
+        "email": "burak@iskar.com",
+        "username": "burakiskar"
+    }
 ]
