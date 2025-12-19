@@ -1,5 +1,6 @@
 package com.arkadastakibi.controller;
 
+import com.arkadastakibi.interfaces.IFormKontrolu;
 import com.arkadastakibi.model.DataBase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,7 @@ import java.nio.file.Files;
 
 
 
-public class RegisterPageController extends BaseController implements Initializable {
+public class RegisterPageController extends BaseController implements Initializable, IFormKontrolu {
     @FXML
     private TextField txtFirstName;
     @FXML
@@ -54,6 +55,16 @@ public class RegisterPageController extends BaseController implements Initializa
         linkLogin.setOnAction(event -> navigateToLogin(event)); //Logine gönderecek
     }
 
+    @Override
+    public boolean validateForm() {
+        return !txtFirstName.getText().isEmpty() &&
+                !txtLastName.getText().isEmpty() &&
+                !txtUsername.getText().isEmpty() &&
+                !txtEmail.getText().isEmpty() &&
+                !txtPassword.getText().isEmpty() &&
+                !txtConfirmPassword.getText().isEmpty();
+    }
+
     private void handleRegister(){
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
@@ -67,7 +78,7 @@ public class RegisterPageController extends BaseController implements Initializa
             gender = "Kadin";
         }
 
-        if(firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+        if(!validateForm()){
             lblMessage.setText("Boş Alanları Doldurunuz!");
             lblMessage.setVisible(true);
             return;
