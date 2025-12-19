@@ -5,16 +5,19 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="800.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arkadastakibi.controller.RegisterPageController">
+<AnchorPane prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arkadastakibi.controller.RegisterPageController">
     <children>
-        <VBox alignment="CENTER_LEFT" layoutX="225.0" layoutY="20.0" maxWidth="400.0" prefWidth="350.0" spacing="12.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="20.0">
+        <VBox alignment="CENTER_LEFT" layoutX="225.0" layoutY="20.0" maxWidth="400.0" prefWidth="350.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="20.0">
             <children>
 
                 <VBox alignment="CENTER" spacing="5.0">
@@ -65,6 +68,35 @@
                     </children>
                 </VBox>
 
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="Cinsiyet" textFill="#495057">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <HBox spacing="20.0">
+                            <children>
+                                <RadioButton fx:id="radioMale" mnemonicParsing="false" selected="true" text="Erkek" textFill="#495057">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="genderGroup" />
+                                    </toggleGroup>
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </RadioButton>
+                                <RadioButton fx:id="radioFemale" mnemonicParsing="false" text="Kadın" textFill="#495057" toggleGroup="$genderGroup">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </RadioButton>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="5.0" top="2.0" />
+                            </VBox.margin>
+                        </HBox>
+                    </children>
+                </VBox>
                 <VBox spacing="5.0">
                     <children>
                         <Label text="Kullanıcı Adı" textFill="#495057">

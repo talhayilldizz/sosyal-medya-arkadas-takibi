@@ -7,16 +7,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import javafx.scene.image.ImageView;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class UserProfileController {
+public class UserProfileController extends BaseController {
 
     @FXML private Button btnBack;
     @FXML private Label lblName;
@@ -24,6 +26,7 @@ public class UserProfileController {
     @FXML private Label lblBio;
     @FXML private Label lblFollowing;
     @FXML private Label lblFollowers;
+    @FXML private ImageView imgProfile;
 
     @FXML private Button btnEditProfile;
     @FXML private Button btnDeleteAccount;
@@ -71,6 +74,31 @@ public class UserProfileController {
                     checkSocialLink(user, "twitter", btnTwitter);
                     checkSocialLink(user, "tiktok", btnTiktok);
 
+                    String gender = "Erkek";
+
+                    if (user.has("gender")) {
+                        gender = user.getString("gender");
+                    }
+
+                    String imagePath = "";
+                    if (gender.equalsIgnoreCase("Kadin")) {
+                        imagePath = "/images/woman.png";
+                    } else {
+                        imagePath = "/images/man.png";
+                    }
+
+                    //Resmi yükle
+                    try {
+                        if (getClass().getResourceAsStream(imagePath) != null) {
+                            Image image = new Image(getClass().getResourceAsStream(imagePath));
+                            imgProfile.setImage(image);
+                        } else {
+                            System.out.println("Resim bulunamadı: " + imagePath);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Resim yüklenirken hata oluştu.");
+                    }
+
                     break;
                 }
             }
@@ -82,28 +110,29 @@ public class UserProfileController {
 
     private void checkSocialLink(JSONObject user, String key, Button btn) {
         if (!user.has(key) || user.isNull(key) || user.getString(key).isEmpty()) {
-            btn.setDisable(true); //Link yoksa tıklanamaz yapar
-            btn.setOpacity(0.5);  //Rengini soldurur
+            btn.setDisable(true);
+            btn.setOpacity(0.5);
         } else {
             btn.setDisable(false);
             btn.setOpacity(1.0);
-            //Tıklanınca tarayıcıda açma kodu
         }
     }
 
     @FXML
     void AnaSayfayaGeriDon(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.arkadastakibi/main-page.fxml"));
-            Parent root = loader.load();
-            MainPageController mainController = loader.getController();
+        MainPageController mainCtrl = changeScene(event, "/com.arkadastakibi/main-page.fxml", "Ana Sayfa");
 
+        // Controller başarıyla geldiyse verileri içine yüklüyoruz
+        if (mainCtrl != null) {
             String aranacakKullanici = (this.currentUsername != null) ? this.currentUsername.trim() : "";
+
+
+            String bulunanAdSoyad = "Misafir Kullanıcı";
+            String bulunanCinsiyet = "Erkek";
+
+
             String dosyaYolu = "users.json";
             File file = new File(dosyaYolu);
-
-            //Varsayılan
-            String bulunanAdSoyad = "Misafir Kullanıcı";
 
             if (file.exists() && !aranacakKullanici.isEmpty()) {
                 try {
@@ -113,31 +142,23 @@ public class UserProfileController {
                     for (int i = 0; i < usersArray.length(); i++) {
                         JSONObject user = usersArray.getJSONObject(i);
 
-                        //jsondaki kullanıcı adını alıyoruz
-                        String jsonUsername = user.getString("username");
-
-                        //eşleşme Kontrolü
-                        if (jsonUsername.equals(aranacakKullanici)) {
+                        if (user.getString("username").equals(aranacakKullanici)) {
                             bulunanAdSoyad = user.getString("firstName") + " " + user.getString("lastName");
+
+
+                            if (user.has("gender")) {
+                                bulunanCinsiyet = user.getString("gender");
+                            }
                             break;
                         }
                     }
                 } catch (Exception e) {
                     System.out.println("Dosya okuma hatası: " + e.getMessage());
                 }
-            } else {
-                System.out.println("UYARI: users.json bulunamadı veya kullanıcı adı boş!");
             }
 
-            mainController.setKullaniciBilgileri(bulunanAdSoyad, aranacakKullanici);
-
-            Stage stage = (Stage) btnBack.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Sayfa geçiş hatası!");
+            // Verileri Ana Sayfa Controller'ına gönderiyoruz
+            mainCtrl.setKullaniciBilgileri(bulunanAdSoyad, aranacakKullanici, bulunanCinsiyet);
         }
     }
 }

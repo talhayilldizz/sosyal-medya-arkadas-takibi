@@ -6,12 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +23,7 @@ import java.nio.file.Files;
 
 
 
-public class RegisterPageController extends DataBase implements Initializable {
+public class RegisterPageController extends BaseController implements Initializable {
     @FXML
     private TextField txtFirstName;
     @FXML
@@ -45,12 +42,16 @@ public class RegisterPageController extends DataBase implements Initializable {
     private Hyperlink linkLogin;
     @FXML
     private Label lblMessage;
+    @FXML
+    private RadioButton radioMale;
+    @FXML
+    private RadioButton radioFemale;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnRegister.setOnAction(event -> handleRegister()); //Butona Basınca çalışacak
 
-        linkLogin.setOnAction(event -> navigateToLogin()); //Logine gönderecek
+        linkLogin.setOnAction(event -> navigateToLogin(event)); //Logine gönderecek
     }
 
     private void handleRegister(){
@@ -60,6 +61,11 @@ public class RegisterPageController extends DataBase implements Initializable {
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         String confirmPassword = txtConfirmPassword.getText();
+        String gender = "Erkek";
+
+        if(radioFemale.isSelected()){
+            gender = "Kadin";
+        }
 
         if(firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
             lblMessage.setText("Boş Alanları Doldurunuz!");
@@ -75,16 +81,19 @@ public class RegisterPageController extends DataBase implements Initializable {
 
 
         //Veriyi json dosyasına ekler
-        boolean success=saveUserToFile(firstName,lastName,username,email,password);
+        boolean success=saveUserToFile(firstName,lastName,username,email,password,gender);
 
         if(!success){
             return;
         }
 
-        handleRegister();
+        lblMessage.setText("Kayıt Başarılı! Giriş Sayfasına Yönlendiriliyorsunuz...");
+        lblMessage.setVisible(true);
+
+        navigateToLogin(new ActionEvent());
     }
 
-    public JSONObject createUserDataJson(int id,String fName, String lName, String uName, String mail, String pass){
+    public JSONObject createUserDataJson(int id,String fName, String lName, String uName, String mail,String gender, String pass){
         JSONObject data=new JSONObject();
         data.put("id",id);
         data.put("firstName",fName);
@@ -92,6 +101,7 @@ public class RegisterPageController extends DataBase implements Initializable {
         data.put("username",uName);
         data.put("email",mail);
         data.put("password",pass);
+        data.put("gender",gender);
 
         data.put("bio",JSONObject.NULL);
         data.put("instagram",JSONObject.NULL);
@@ -101,19 +111,8 @@ public class RegisterPageController extends DataBase implements Initializable {
         return data;
     }
 
-    private void navigateToLogin(){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.arkadastakibi/login.fxml"));
-            Parent root=loader.load();
-
-            Stage stage = (Stage) btnRegister.getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Hata: Login sayfası yüklenemedi. Dosya yolunu kontrol et.");
-        }
+    private void navigateToLogin(ActionEvent event){
+        changeScene(event, "/com.arkadastakibi/login.fxml", "Giriş Yap");
     }
 
     //Kullanıcıya id üretir
@@ -151,7 +150,7 @@ public class RegisterPageController extends DataBase implements Initializable {
 
 
     //Kullanıcıyı dosyaya ekler
-    private boolean saveUserToFile(String fName,String lName,String uName,String mail,String pass){
+    private boolean saveUserToFile(String fName, String lName, String uName, String mail, String pass, String gender){
         try{
            File file=new File("users.json");
 
@@ -172,7 +171,7 @@ public class RegisterPageController extends DataBase implements Initializable {
            }
 
            int newID=getNextID(usersArray);
-           JSONObject user=createUserDataJson(newID,fName,lName,uName,mail,pass);
+           JSONObject user=createUserDataJson(newID,fName,lName,uName,mail,gender,pass);
 
            usersArray.put(user);
 

@@ -20,7 +20,7 @@ public abstract class BaseController {
     }
 
     //Generic
-    // OVERLOADING 2: Hem yol hem de başlık verince çalışır.
+    //OVERLOADING 2: Hem yol hem de başlık verince çalışır.
     protected <T> T changeScene(Event event, String fxmlPath, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -34,7 +34,7 @@ public abstract class BaseController {
             }
             stage.show();
 
-            // Controller'ı geri döndürürüz, böylece veri aktarımı yapabiliriz.
+            //Controller'ı geri döndürürüz, böylece veri aktarımı yapabiliriz.
             return loader.getController();
 
         } catch (IOException e) {
@@ -44,7 +44,7 @@ public abstract class BaseController {
         }
     }
 
-    // Ortak uyarı mekanizması
+    //Ortak uyarı mekanizması
     protected void showMessage(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

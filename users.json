@@ -22,5 +22,18 @@
         "instagram": null,
         "email": "burak@iskar.com",
         "username": "burakiskar"
+    },
+    {
+        "firstName": "Nisanur",
+        "lastName": "Şahin",
+        "password": "1234",
+        "twitter": null,
+        "gender": "Kadin",
+        "tiktok": null,
+        "bio": null,
+        "id": 3,
+        "instagram": null,
+        "email": "nisanursahin@gmail.com",
+        "username": "nisanursahin"
     }
 ]

@@ -59,8 +59,18 @@ public class LoginController extends BaseController implements Initializable, IF
         //Kullanıcı bulunursa main sayfasına yönlendir
         if (foundUser != null) {
             MainPageController mainCtrl = changeScene(event, "/com.arkadastakibi/main-page.fxml", "Ana Sayfa");
+
+            if (mainCtrl != null) {
+                String adSoyad = foundUser.getString("firstName") + " " + foundUser.getString("lastName");
+                String kAdi = foundUser.getString("username");
+                String cinsiyet = "Erkek";
+                if (foundUser.has("gender")) {
+                    cinsiyet = foundUser.getString("gender");
+                }
+                mainCtrl.setKullaniciBilgileri(adSoyad, kAdi, cinsiyet);
+            }
         } else {
-            System.out.println("Hatalı kullanıcı adı veya şifre!");
+            showMessage("Hata", "Hatalı kullanıcı adı veya şifre!", Alert.AlertType.ERROR);
         }
     }
 
@@ -93,7 +103,7 @@ public class LoginController extends BaseController implements Initializable, IF
             e.printStackTrace();
         }
 
-        return null; // Kullanıcı bulunamadı
+        return null;
     }
 
     private void navigateToMainPage(JSONObject userData, ActionEvent event) {
