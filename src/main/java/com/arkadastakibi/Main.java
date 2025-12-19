@@ -18,7 +18,7 @@ public class Main extends Application {
 
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            stage.setTitle("Arkadaş Takibi - Giriş Yap");
+            stage.setTitle("Sosyal Medya Arkadaş Takibi");
             stage.setScene(scene);
             stage.show();
 

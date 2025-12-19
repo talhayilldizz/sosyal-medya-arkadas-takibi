@@ -1,21 +1,25 @@
 package com.arkadastakibi.controller;
 
+import com.arkadastakibi.interfaces.IFormKontrolu;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import javafx.event.ActionEvent;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class LoginController extends BaseController implements Initializable, IFormKontrolu {
 
     @FXML
     private TextField txtUsername;
@@ -27,61 +31,76 @@ public class LoginController implements Initializable {
     private Button btnLogin;
 
     @FXML
-    private Hyperlink linkForgotPassword;
-
-    @FXML
     private Hyperlink linkRegister;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        btnLogin.setOnAction(event -> handleLogin());
-
-        linkRegister.setOnAction(event -> navigateToRegister());
+        btnLogin.setOnAction(event -> handleLogin(event));
+        linkRegister.setOnAction(event -> navigateToRegister(event));
     }
 
-    private void handleLogin() {
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
+    @Override
+    public boolean validateForm() {
+        return !txtUsername.getText().trim().isEmpty() && !txtPassword.getText().trim().isEmpty();
+    }
 
-        if(username.equals("admin") && password.equals("1234")) {
-            System.out.println("Giriş Başarılı! Yönlendiriliyor...");
+    private void handleLogin(ActionEvent event) {
+        String username = txtUsername.getText().trim();
+        String password = txtPassword.getText().trim();
 
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.arkadastakibi/main-page.fxml"));
-                Parent root = loader.load();
+        if (!validateForm()) {
+            showMessage("Hata", "Lütfen tüm alanları doldurun.", Alert.AlertType.WARNING);
+            return;
+        }
 
-                // MainPageController'a eriş ve veriyi gönder
-                MainPageController mainController = loader.getController();
-                mainController.setKullaniciBilgileri(username);
+        // JSON Dosyasından kullanıcıyı sorgula
+        JSONObject foundUser = findUserInJson(username, password);
 
-                // Sahneyi değiştir
-                Stage stage = (Stage) btnLogin.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
+        //Kullanıcı bulunursa main sayfasına yönlendir
+        if (foundUser != null) {
+            MainPageController mainCtrl = changeScene(event, "/com.arkadastakibi/main-page.fxml", "Ana Sayfa");
+        } else {
+            System.out.println("Hatalı kullanıcı adı veya şifre!");
+        }
+    }
 
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("FXML Yükleme Hatası: Dosya yolu yanlış olabilir.");
+    //Kullanıcıyı bulan metot(kullanıcı ve şifreye göre)
+    private JSONObject findUserInJson(String username, String password) {
+        String filePath = "users.json";
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            System.out.println("Henüz kayıtlı kullanıcı yok.");
+            return null;
+        }
+
+        try {
+            // Dosyayı string olarak oku
+            String content = new String(Files.readAllBytes(Paths.get(filePath)));
+            JSONArray usersArray = new JSONArray(content);
+
+            // Döngü ile kullanıcıları tara
+            for (int i = 0; i < usersArray.length(); i++) {
+                JSONObject user = usersArray.getJSONObject(i);
+
+                // Kullanıcı adı ve şifre eşleşiyorsa return user
+                if (user.getString("username").equals(username) && user.getString("password").equals(password)) {
+                    return user;
+                }
             }
 
-        } else {
-            System.out.println("Hatali kullanici adi veya sifre!");
-        }
-    }
-
-    private void navigateToRegister(){
-        try{
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/com.arkadastakibi/register.fxml"));
-            Parent root =loader.load();
-
-            Stage stage= (Stage) linkRegister.getScene().getWindow();
-
-            stage.setScene(new Scene(root));
-            stage.show();
-        }catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Hata: Register sayfası yüklenemedi. Dosya ismini kontrol et!");
         }
+
+        return null; // Kullanıcı bulunamadı
     }
 
+    private void navigateToMainPage(JSONObject userData, ActionEvent event) {
+        changeScene(event, "/com.arkadastakibi/main-page.fxml", "Ana sayfa");
+    }
+
+    private void navigateToRegister(ActionEvent event) {
+        changeScene(event, "/com.arkadastakibi/register.fxml", "Kayıt Ol");
+    }
 }

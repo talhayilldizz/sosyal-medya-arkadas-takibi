@@ -62,14 +62,6 @@
                                 <Font size="14.0" />
                             </font>
                         </PasswordField>
-                        <Hyperlink fx:id="linkForgotPassword" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Şifremi unuttum?" textFill="#1e88e5">
-                            <VBox.margin>
-                                <Insets top="-5.0" />
-                            </VBox.margin>
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Hyperlink>
                     </children>
                 </VBox>
 
