@@ -1,5 +1,8 @@
 package com.arkadastakibi.model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,8 +21,30 @@ public class Post {
         this.postTitle = postTitle;
         this.postContent = postContent;
         this.postDate = postDate;
-        likes = new ArrayList<>();
-        comments = new ArrayList<>();
+        this.likes = new ArrayList<>();
+        this.comments = new ArrayList<>();
+    }
+
+    public Post(JSONObject post){
+        this.postId = post.getInt("postId");
+        this.userId = post.getInt("userId");
+        this.postTitle = post.getString("postTitle");
+        this.postContent = post.getString("postContent");
+        this.postDate = post.getString("postDate");
+
+        this.likes = new ArrayList<>();
+        this.comments = new ArrayList<>();
+
+        JSONArray likesArray = post.getJSONArray("likes");
+        for (int i=0;i<likesArray.length();i++){
+            likes.add(likesArray.getInt(i));
+        }
+
+        JSONArray commentsArray = post.getJSONArray("comments");
+        for (int i = 0; i < commentsArray.length(); i++) {
+            JSONObject commentJson = commentsArray.getJSONObject(i);
+            comments.add(new Comment(commentJson));
+        }
     }
 
     public int getPostId() {

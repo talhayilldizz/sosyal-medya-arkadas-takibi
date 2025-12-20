@@ -1,5 +1,7 @@
 package com.arkadastakibi.model;
 
+import org.json.JSONObject;
+
 public class Comment {
     private int id;
     private int postId;
@@ -14,6 +16,13 @@ public class Comment {
         this.UserId = UserId;
         this.content = content;
         this.postDate = postDate;
+    }
+    public Comment(JSONObject commentJson){
+        this.id = commentJson.getInt("id");
+        this.postId = commentJson.getInt("postId");
+        this.UserId = commentJson.getInt("UserId");
+        this.content = commentJson.getString("content");
+        this.postDate = commentJson.getString("postDate");
     }
 
     public int getId() {
