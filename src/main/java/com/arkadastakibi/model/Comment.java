@@ -5,13 +5,15 @@ public class Comment {
     private int postId;
     private int UserId;
     private String content;
+    private String postDate;
 
 
-    public Comment(int id, int postId, int UserId, String content) {
+    public Comment(int id, int postId, int UserId, String content, String postDate) {
         this.id = id;
         this.postId = postId;
         this.UserId = UserId;
         this.content = content;
+        this.postDate = postDate;
     }
 
     public int getId() {
@@ -37,6 +39,12 @@ public class Comment {
     }
     public void setContent(String content) {
         this.content = content;
+    }
+    public String getPostDate() {
+        return postDate;
+    }
+    public void setPostDate(String postDate) {
+        this.postDate = postDate;
     }
 
 }
