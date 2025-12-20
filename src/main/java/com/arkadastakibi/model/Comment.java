@@ -25,6 +25,16 @@ public class Comment {
         this.postDate = commentJson.getString("postDate");
     }
 
+    public JSONObject toJSON(){
+        JSONObject obj = new JSONObject();
+        obj.put("id", id);
+        obj.put("postId", postId);
+        obj.put("UserId", UserId);
+        obj.put("content", content);
+        obj.put("postDate", postDate);
+        return obj;
+    }
+
     public int getId() {
         return id;
     }

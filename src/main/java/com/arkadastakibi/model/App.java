@@ -47,4 +47,6 @@ public class App {
             Comments.add(mycomment);
         }
     }
+
+    // bu kısıman dosyaya veri yazma kodu yazılacak
 }

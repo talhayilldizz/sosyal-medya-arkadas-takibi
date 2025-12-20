@@ -45,6 +45,23 @@ public class Post {
             JSONObject commentJson = commentsArray.getJSONObject(i);
             comments.add(new Comment(commentJson));
         }
+
+    }
+
+    public JSONObject toJSON(){
+        JSONObject obj = new JSONObject();
+        obj.put("postId", postId);
+        obj.put("userId", userId);
+        obj.put("postTitle", postTitle);
+        obj.put("postContent", postContent);
+        obj.put("postDate", postDate);
+        obj.put("likes", likes);
+        obj.put("comments", comments);
+
+        obj.put("followerUser",new JSONArray(likes));
+        obj.put("followingUser",new JSONArray(comments));
+
+        return obj;
     }
 
     public int getPostId() {
