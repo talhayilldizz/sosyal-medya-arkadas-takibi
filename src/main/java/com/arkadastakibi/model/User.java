@@ -1,5 +1,11 @@
 package com.arkadastakibi.model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class User {
     private int id;
     private String firstName;
@@ -15,13 +21,9 @@ public class User {
     private String tiktokLink;
 
 
-    private int followerCount; //Takipçi
-    private int followingCount; //Takip Edilen
+    private ArrayList<Integer> followerUser; //Takipçi
+    private ArrayList<Integer> followingUser;
 
-    public User(){
-        this.followerCount = 0;
-        this.followingCount = 0;
-    }
 
     public User(int id, String firstName, String lastName, String username, String email, String bio){
         this.id = id;
@@ -30,8 +32,31 @@ public class User {
         this.username = username;
         this.email = email;
         this.bio = bio;
-        this.followerCount = 0;
-        this.followingCount = 0;
+        this.followerUser = new ArrayList<Integer>(); //Takipçi
+        this.followingUser = new ArrayList<Integer>();
+    }
+
+    public User(JSONObject data){
+        this.id = data.getInt("id");
+        this.firstName = data.getString("firstName");
+        this.lastName = data.getString("lastName");
+        this.username = data.getString("username");
+        this.email = data.getString("email");
+        this.bio = data.getString("bio");
+        this.instagramLink = data.getString("instagramLink");
+        this.twitterLink = data.getString("twitterLink");
+        this.tiktokLink = data.getString("tiktokLink");
+
+        JSONArray followerUser_ = data.getJSONArray("followerUser");
+
+        for (int i = 0; i < followerUser_.length(); i++){
+            this.followerUser.add(followerUser_.getInt(i));
+        }
+        JSONArray followingUser_ = data.getJSONArray("followingUser");
+
+        for (int i = 0; i < followerUser_.length(); i++){
+            this.followerUser.add(followerUser_.getInt(i));
+        }
     }
 
     public int getId() {
@@ -93,18 +118,6 @@ public class User {
     }
     public void setTiktokLink(String tiktokLink) {
         this.tiktokLink = tiktokLink;
-    }
-    public int getFollowerCount() {
-        return followerCount;
-    }
-    public void setFollowerCount(int followerCount) {
-        this.followerCount = followerCount;
-    }
-    public int getFollowingCount() {
-        return followingCount;
-    }
-    public void setFollowingCount(int followingCount) {
-        this.followingCount = followingCount;
     }
 
 
