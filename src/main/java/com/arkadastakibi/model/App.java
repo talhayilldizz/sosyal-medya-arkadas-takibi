@@ -30,8 +30,21 @@ public class App {
             User myuser = new User(user);
             Users.add(myuser);
         }
+
+        JSONArray postArray = userDataBase.readData();
+
+        for (int i = 0; i < postArray.length(); i++) {
+            JSONObject post = postArray.getJSONObject(i);
+            Post mypost = new Post(post);
+            Posts.add(mypost);
+        }
+
+        JSONArray commentArray = userDataBase.readData();
+
+        for (int i = 0; i < commentArray.length(); i++) {
+            JSONObject comment = commentArray.getJSONObject(i);
+            Comment mycomment = new Comment(comment);
+            Comments.add(mycomment);
+        }
     }
-
-
-
 }

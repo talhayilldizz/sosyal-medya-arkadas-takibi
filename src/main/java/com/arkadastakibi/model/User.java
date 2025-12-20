@@ -54,9 +54,27 @@ public class User {
         }
         JSONArray followingUser_ = data.getJSONArray("followingUser");
 
-        for (int i = 0; i < followerUser_.length(); i++){
-            this.followerUser.add(followerUser_.getInt(i));
+        for (int i = 0; i < followingUser_.length(); i++){
+            this.followingUser.add(followingUser_.getInt(i));
         }
+    }
+
+    public JSONObject toJSON(){
+        JSONObject user = new JSONObject();
+        user.put("id", id);
+        user.put("firstName", firstName);
+        user.put("lastName", lastName);
+        user.put("username", username);
+        user.put("email", email);
+        user.put("bio", bio);
+        user.put("instagramLink", instagramLink);
+        user.put("twitterLink", twitterLink);
+        user.put("tiktokLink", tiktokLink);
+
+        user.put("followerUser",new JSONArray(followerUser));
+        user.put("followingUser",new JSONArray(followingUser));
+
+        return user;
     }
 
     public int getId() {
@@ -119,6 +137,4 @@ public class User {
     public void setTiktokLink(String tiktokLink) {
         this.tiktokLink = tiktokLink;
     }
-
-
 }
