@@ -31,7 +31,7 @@ public class App {
             Users.add(myuser);
         }
 
-        JSONArray postArray = userDataBase.readData();
+        JSONArray postArray = postDataBase.readData();
 
         for (int i = 0; i < postArray.length(); i++) {
             JSONObject post = postArray.getJSONObject(i);
@@ -39,7 +39,7 @@ public class App {
             Posts.add(mypost);
         }
 
-        JSONArray commentArray = userDataBase.readData();
+        JSONArray commentArray = commentDataBase.readData();
 
         for (int i = 0; i < commentArray.length(); i++) {
             JSONObject comment = commentArray.getJSONObject(i);
