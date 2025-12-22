@@ -35,11 +35,10 @@ public class LoginController extends BaseController implements Initializable, IF
     @FXML
     private Hyperlink linkRegister;
 
-    private App app;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        app=new App("users.json","post.json","comment.json");
+        this.app=new App("users.json","post.json","comment.json");
 
         btnLogin.setOnAction(event -> handleLogin(event));
         linkRegister.setOnAction(event -> navigateToRegister(event));

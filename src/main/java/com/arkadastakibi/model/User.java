@@ -26,7 +26,7 @@ public class User {
     private ArrayList<Integer> followingUser;
 
 
-    public User(int id, String firstName, String lastName, String username,String gender,String password, String email, String bio){
+    public User(int id, String firstName, String lastName, String username,String gender,String password, String email){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,7 +34,10 @@ public class User {
         this.email = email;
         this.gender=gender;
         this.password=password;
-        this.bio = bio;
+        this.bio = "";
+        this.instagramLink = "";
+        this.twitterLink = "";
+        this.tiktokLink = "";
         this.followerUser = new ArrayList<Integer>(); //Takipçi
         this.followingUser = new ArrayList<Integer>();
     }

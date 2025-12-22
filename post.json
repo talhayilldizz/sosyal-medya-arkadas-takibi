@@ -1,19 +1,31 @@
-[
-  {
-    "postId": 1,
-    "userId": 1,
-    "postTitle": "Post Başlık",
-    "postContent": "Post Açıklama",
-    "postDate": "2025-12-20",
-    "likes": [3, 7, 15],
-    "comments": [
-      {
+[{
+    "comments": [{
+        "postDate": "2025-12-20",
         "id": 1,
         "postId": 1,
         "userId": 2,
-        "content": "Hoş geldin!",
-        "postDate": "2025-12-20"
-      }
+        "content": "Hoş geldin!"
+    }],
+    "postContent": "Post Açıklama",
+    "followerUser": [
+        3,
+        7,
+        15
+    ],
+    "postDate": "2025-12-20",
+    "postTitle": "Post Başlık",
+    "postId": 1,
+    "userId": 1,
+    "followingUser": [{
+        "postDate": "2025-12-20",
+        "id": 1,
+        "postId": 1,
+        "userId": 2,
+        "content": "Hoş geldin!"
+    }],
+    "likes": [
+        3,
+        7,
+        15
     ]
-  }
-]
+}]

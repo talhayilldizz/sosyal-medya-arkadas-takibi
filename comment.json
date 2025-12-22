@@ -1,9 +1,7 @@
-[
-  {
+[{
+    "postDate": "2025-12-20",
     "id": 1,
     "postId": 1,
     "userId": 2,
-    "content": "Hoş geldin!",
-    "postDate": "2025-12-20"
-  }
-]
+    "content": "Hoş geldin!"
+}]

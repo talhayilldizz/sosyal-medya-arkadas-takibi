@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import com.arkadastakibi.model.App;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,11 @@ import java.nio.file.Paths;
 // ABSTRACT CLASS: Bu sınıftan nesne üretilemez, sadece miras alınabilir.
 public abstract class BaseController {
 //-----------------------EKRANLA İLGİLİ FONKSİYONLAR(MESAJLAR, EKRAN DEĞİŞİMİ VB.)-------------------
+    protected App app; // - Ortak uygulama nesnesi
 
+    public void setApp(App app) {
+        this.app = app;
+    }
     // ENCAPSULATION: Bu metoda sadece miras alan sınıflar (protected) erişebilir.
     // OVERLOADING 1: Sadece gidilecek yolu verince çalışır.
     protected void changeScene(Event event, String fxmlPath) {
@@ -32,6 +37,14 @@ public abstract class BaseController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
+            // 1. Controller'ı uygun tipe cast ederek (dönüştürerek) al
+            T controller = (T) loader.getController();
+
+            // 2. app nesnesini aktar (Zaten BaseController'dan türediği için güvenli)
+            if (controller instanceof BaseController) {
+                ((BaseController) controller).setApp(this.app);
+            }
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
 
@@ -40,8 +53,8 @@ public abstract class BaseController {
             }
             stage.show();
 
-            //Controller'ı geri döndürürüz, böylece veri aktarımı yapabiliriz.
-            return loader.getController();
+            // 3. Zaten yukarıda aldığın 'controller' değişkenini döndür
+            return controller;
 
         } catch (IOException e) {
             e.printStackTrace();

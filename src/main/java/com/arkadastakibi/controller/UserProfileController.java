@@ -42,10 +42,7 @@ public class UserProfileController extends BaseController {
     }
 
     private void kullaniciVerileriniYukle() {
-        String filePath = "users.json";
-        File file = new File(filePath);
 
-        if (!file.exists()) return;
 
         try {
             String content = new String(Files.readAllBytes(Paths.get(filePath)));

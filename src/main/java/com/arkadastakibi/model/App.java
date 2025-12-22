@@ -48,5 +48,58 @@ public class App {
         }
     }
 
-    // bu kısıman dosyaya veri yazma kodu yazılacak
+    public int update(){
+        JSONArray usersArray = new  JSONArray();
+        for (User user : Users) {
+            usersArray.put(user.toJSON());
+        }
+        userDataBase.writeData(usersArray);
+
+        JSONArray postsArray = new  JSONArray();
+        for (Post post : Posts) {
+            postsArray.put(post.toJSON());
+        }
+        postDataBase.writeData(postsArray);
+
+        JSONArray commentsArray = new  JSONArray();
+        for (Comment comment : Comments) {
+            commentsArray.put(comment.toJSON());
+        }
+        commentDataBase.writeData(commentsArray);
+        return 1;
+    }
+
+    public int delete(){
+        return this.update();
+    }
+
+    public User search_to_user(int id){
+        for (User user : Users) {
+            if(user.getId() == id){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public Post search_to_post(int id){
+        for (Post post : Posts){
+            if(post.getPostId() == id){
+                return post;
+            }
+        }
+        return null;
+    }
+
+    public Comment search_to_comment(int id){
+        for (Comment comment : Comments){
+            if(comment.getId() == id){
+                return comment;
+            }
+        }
+        return null;
+    }
+
+
+
 }
