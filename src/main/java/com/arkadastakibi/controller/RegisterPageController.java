@@ -101,7 +101,7 @@ public class RegisterPageController extends BaseController implements Initializa
         lblMessage.setText("Kayıt Başarılı! Giriş Sayfasına Yönlendiriliyorsunuz...");
         lblMessage.setVisible(true);
 
-        navigateToLogin(new ActionEvent());
+        navigateToLogin(new ActionEvent(btnRegister,null));
     }
 
     public JSONObject createUserDataJson(int id,String fName, String lName, String uName, String mail,String gender, String pass){
@@ -118,6 +118,9 @@ public class RegisterPageController extends BaseController implements Initializa
         data.put("instagram",JSONObject.NULL);
         data.put("twitter",JSONObject.NULL);
         data.put("tiktok",JSONObject.NULL);
+
+        data.put("followingUser",new JSONArray());
+        data.put("followerUser",new JSONArray());
 
         return data;
     }
