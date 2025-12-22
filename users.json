@@ -1,41 +1,47 @@
 [
-    {
-        "firstName": "Talha",
-        "lastName": "Yıldız",
-        "password": "1234",
-        "twitter": null,
-        "tiktok": null,
-        "bio": null,
-        "id": 1,
-        "instagram": null,
-        "email": "talha@gmail.com",
-        "username": "talhayildiz",
-        "followerUser":[],
-        "followingUser":[]
-    },
-    {
-        "firstName": "burak",
-        "lastName": "iskar",
-        "password": "1234",
-        "twitter": null,
-        "tiktok": null,
-        "bio": null,
-        "id": 2,
-        "instagram": null,
-        "email": "burak@iskar.com",
-        "username": "burakiskar"
-    },
-    {
-        "firstName": "Nisanur",
-        "lastName": "Şahin",
-        "password": "1234",
-        "twitter": null,
-        "gender": "Kadin",
-        "tiktok": null,
-        "bio": null,
-        "id": 3,
-        "instagram": null,
-        "email": "nisanursahin@gmail.com",
-        "username": "nisanursahin"
-    }
+  {
+  "firstName": "Talha",
+  "lastName": "Yıldız",
+  "password": "1234",
+  "twitter": null,
+  "tiktok": null,
+  "bio": null,
+  "id": 1,
+  "instagram": null,
+  "email": "talha@gmail.com",
+  "username": "talhayildiz",
+    "gender": "Erkek",
+  "followerUser":[],
+  "followingUser":[]
+},
+  {
+    "firstName": "Burak",
+    "lastName": "İskar",
+    "password": "1234",
+    "twitter": null,
+    "tiktok": null,
+    "bio": null,
+    "id": 2,
+    "instagram": null,
+    "email": "burak@gmail.com",
+    "username": "burakiskar",
+    "gender": "Erkek",
+    "followerUser":[],
+    "followingUser":[]
+  },
+  {
+    "firstName": "Nisa",
+    "lastName": "Sahin",
+    "password": "1234",
+    "twitter": null,
+    "tiktok": null,
+    "bio": null,
+    "id": 3,
+    "instagram": null,
+    "email": "nisa@gmail.com",
+    "username": "nisasahin",
+    "gender": "Kadın",
+    "followerUser":[],
+    "followingUser":[]
+  }
 ]

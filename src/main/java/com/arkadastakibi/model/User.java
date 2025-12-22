@@ -13,6 +13,7 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String gender;
     private String bio;
 
     //Diğer sosyal medya hesapları
@@ -25,12 +26,14 @@ public class User {
     private ArrayList<Integer> followingUser;
 
 
-    public User(int id, String firstName, String lastName, String username, String email, String bio){
+    public User(int id, String firstName, String lastName, String username,String gender,String password, String email, String bio){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
+        this.gender=gender;
+        this.password=password;
         this.bio = bio;
         this.followerUser = new ArrayList<Integer>(); //Takipçi
         this.followingUser = new ArrayList<Integer>();
@@ -38,14 +41,18 @@ public class User {
 
     public User(JSONObject data){
         this.id = data.getInt("id");
-        this.firstName = data.getString("firstName");
-        this.lastName = data.getString("lastName");
         this.username = data.getString("username");
-        this.email = data.getString("email");
-        this.bio = data.getString("bio");
-        this.instagramLink = data.getString("instagramLink");
-        this.twitterLink = data.getString("twitterLink");
-        this.tiktokLink = data.getString("tiktokLink");
+
+        this.firstName = data.optString("firstName", "");
+        this.lastName = data.optString("lastName", "");
+        this.email = data.optString("email", "");
+        this.password = data.optString("password", "");
+        this.gender = data.optString("gender", "Belirtilmemiş");
+        this.bio = data.optString("bio", "");
+
+        this.instagramLink = data.optString("instagram","");
+        this.twitterLink = data.optString("twitter","");
+        this.tiktokLink = data.optString("tiktok","");
 
         JSONArray followerUser_ = data.getJSONArray("followerUser");
 
@@ -67,6 +74,8 @@ public class User {
         user.put("username", username);
         user.put("email", email);
         user.put("bio", bio);
+        user.put("password", password);
+        user.put("gender", gender);
         user.put("instagramLink", instagramLink);
         user.put("twitterLink", twitterLink);
         user.put("tiktokLink", tiktokLink);
@@ -136,5 +145,11 @@ public class User {
     }
     public void setTiktokLink(String tiktokLink) {
         this.tiktokLink = tiktokLink;
+    }
+    public String getGender() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

@@ -17,6 +17,7 @@ public class DataBase {
 
     public DataBase(String filePath) {
         this.file = new File(filePath);
+        this.FilePath = filePath;
     }
 
     public JSONArray readData(){
@@ -27,8 +28,9 @@ public class DataBase {
 
         }catch (Exception e) {
             e.printStackTrace();
+            return new  JSONArray();
         }
-        return null;
+
     }
 
     public int writeData(JSONArray data){

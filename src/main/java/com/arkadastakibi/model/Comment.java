@@ -5,22 +5,22 @@ import org.json.JSONObject;
 public class Comment {
     private int id;
     private int postId;
-    private int UserId;
+    private int userId;
     private String content;
     private String postDate;
 
 
-    public Comment(int id, int postId, int UserId, String content, String postDate) {
+    public Comment(int id, int postId, int userId, String content, String postDate) {
         this.id = id;
         this.postId = postId;
-        this.UserId = UserId;
+        this.userId = userId;
         this.content = content;
         this.postDate = postDate;
     }
     public Comment(JSONObject commentJson){
         this.id = commentJson.getInt("id");
         this.postId = commentJson.getInt("postId");
-        this.UserId = commentJson.getInt("UserId");
+        this.userId = commentJson.getInt("userId");
         this.content = commentJson.getString("content");
         this.postDate = commentJson.getString("postDate");
     }
@@ -29,7 +29,7 @@ public class Comment {
         JSONObject obj = new JSONObject();
         obj.put("id", id);
         obj.put("postId", postId);
-        obj.put("UserId", UserId);
+        obj.put("userId", userId);
         obj.put("content", content);
         obj.put("postDate", postDate);
         return obj;
@@ -48,10 +48,10 @@ public class Comment {
         this.postId = postId;
     }
     public int getUserId() {
-        return UserId;
+        return userId;
     }
     public void setUserId(int UserId) {
-        this.UserId = UserId;
+        this.userId = UserId;
     }
     public String getContent() {
         return content;

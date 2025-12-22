@@ -1,6 +1,8 @@
 package com.arkadastakibi.controller;
 
 import com.arkadastakibi.interfaces.IFormKontrolu;
+import com.arkadastakibi.model.App;
+import com.arkadastakibi.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,8 +35,12 @@ public class LoginController extends BaseController implements Initializable, IF
     @FXML
     private Hyperlink linkRegister;
 
+    private App app;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        app=new App("users.json","post.json","comment.json");
+
         btnLogin.setOnAction(event -> handleLogin(event));
         linkRegister.setOnAction(event -> navigateToRegister(event));
     }
@@ -53,61 +59,29 @@ public class LoginController extends BaseController implements Initializable, IF
             return;
         }
 
-        // JSON Dosyasından kullanıcıyı sorgula
-        JSONObject foundUser = findUserInJson(username, password);
+        User foundUser=null;
+
+        for(User user: app.Users){
+            if(user.getUsername().equals(username) && user.getPassword().equals(password)){
+                foundUser=user;
+                break;
+            }
+        }
 
         //Kullanıcı bulunursa main sayfasına yönlendir
         if (foundUser != null) {
             MainPageController mainCtrl = changeScene(event, "/com.arkadastakibi/main-page.fxml", "Ana Sayfa");
 
             if (mainCtrl != null) {
-                String adSoyad = foundUser.getString("firstName") + " " + foundUser.getString("lastName");
-                String kAdi = foundUser.getString("username");
-                String cinsiyet = "Erkek";
-                if (foundUser.has("gender")) {
-                    cinsiyet = foundUser.getString("gender");
-                }
-                mainCtrl.setKullaniciBilgileri(adSoyad, kAdi, cinsiyet);
+                String addSoyad=foundUser.getFirstName() + " " + foundUser.getLastName();
+                String kullaniciAdi=foundUser.getUsername();
+                String cinsiyet=foundUser.getGender();
+
+                mainCtrl.setKullaniciBilgileri(addSoyad, kullaniciAdi, cinsiyet);
             }
         } else {
             showMessage("Hata", "Hatalı kullanıcı adı veya şifre!", Alert.AlertType.ERROR);
         }
-    }
-
-    //Kullanıcıyı bulan metot(kullanıcı ve şifreye göre)
-    private JSONObject findUserInJson(String username, String password) {
-        String filePath = "users.json";
-        File file = new File(filePath);
-
-        if (!file.exists()) {
-            System.out.println("Henüz kayıtlı kullanıcı yok.");
-            return null;
-        }
-
-        try {
-            // Dosyayı string olarak oku
-            String content = new String(Files.readAllBytes(Paths.get(filePath)));
-            JSONArray usersArray = new JSONArray(content);
-
-            // Döngü ile kullanıcıları tara
-            for (int i = 0; i < usersArray.length(); i++) {
-                JSONObject user = usersArray.getJSONObject(i);
-
-                // Kullanıcı adı ve şifre eşleşiyorsa return user
-                if (user.getString("username").equals(username) && user.getString("password").equals(password)) {
-                    return user;
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    private void navigateToMainPage(JSONObject userData, ActionEvent event) {
-        changeScene(event, "/com.arkadastakibi/main-page.fxml", "Ana sayfa");
     }
 
     private void navigateToRegister(ActionEvent event) {
