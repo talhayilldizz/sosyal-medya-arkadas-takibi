@@ -57,13 +57,15 @@ public class User {
         this.twitterLink = data.optString("twitter","");
         this.tiktokLink = data.optString("tiktok","");
 
-        JSONArray followerUser_ = data.getJSONArray("followerUser");
+        this.followerUser = new ArrayList<>();
+        this.followingUser = new ArrayList<>();
 
+        JSONArray followerUser_ = data.getJSONArray("followerUser");
         for (int i = 0; i < followerUser_.length(); i++){
             this.followerUser.add(followerUser_.getInt(i));
         }
-        JSONArray followingUser_ = data.getJSONArray("followingUser");
 
+        JSONArray followingUser_ = data.getJSONArray("followingUser");
         for (int i = 0; i < followingUser_.length(); i++){
             this.followingUser.add(followingUser_.getInt(i));
         }
@@ -154,5 +156,12 @@ public class User {
     }
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public ArrayList<Integer> getFollowerUser() {
+        return followerUser;
+    }
+    public ArrayList<Integer> getFollowingUser() {
+        return followingUser;
     }
 }

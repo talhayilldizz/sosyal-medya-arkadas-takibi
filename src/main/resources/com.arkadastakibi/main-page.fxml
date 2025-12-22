@@ -19,7 +19,7 @@
 <BorderPane prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #f4f6f8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arkadastakibi.controller.MainPageController">
 
     <left>
-        <VBox prefHeight="750.0" prefWidth="280.0" spacing="15.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);" BorderPane.alignment="CENTER">
+        <VBox prefHeight="750.0" prefWidth="280.0" spacing="10.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
@@ -30,11 +30,25 @@
                     </font>
                 </Label>
 
-                <TextField fx:id="txtSearch" promptText="Arkadaş ara..." style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 10;">
+                <TextField fx:id="txtSearch" promptText="Kullanıcı ara..." style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 8;">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="13.0" />
                     </font>
                 </TextField>
+
+                <Separator prefWidth="200.0" />
+
+                <Label text="Kullanıcılar" textFill="#6c757d">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background: white;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                    <content>
+                        <VBox fx:id="vboxAllUsers" spacing="10.0" style="-fx-background-color: white;" />
+                    </content>
+                </ScrollPane>
 
                 <Separator prefWidth="200.0" />
 
@@ -44,55 +58,12 @@
                     </font>
                 </Label>
 
-                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background: white;" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background: white;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
                     <content>
-                        <VBox fx:id="vboxFriendsList" spacing="10.0" style="-fx-background-color: white;">
-                            <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-cursor: hand; -fx-padding: 5;">
-                                <children>
-                                    <Circle fill="#e0e0e0" radius="20.0" stroke="TRANSPARENT" />
-                                    <VBox alignment="CENTER_LEFT">
-                                        <children>
-                                            <Label text="Ahmet Yılmaz" textFill="#212529">
-                                                <font>
-                                                    <Font name="System Bold" size="14.0" />
-                                                </font>
-                                            </Label>
-                                            <Label text="\@ahmety" textFill="#868686">
-                                                <font>
-                                                    <Font size="12.0" />
-                                                </font>
-                                            </Label>
-                                        </children>
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Button style="-fx-background-color: transparent; -fx-text-fill: #1e88e5; -fx-font-weight: bold; -fx-cursor: hand;" text="Git &gt;" />
-                                </children>
-                            </HBox>
-
-                            <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-cursor: hand; -fx-padding: 5;">
-                                <children>
-                                    <Circle fill="#e0e0e0" radius="20.0" stroke="TRANSPARENT" />
-                                    <VBox alignment="CENTER_LEFT">
-                                        <children>
-                                            <Label text="Zeynep Kaya" textFill="#212529">
-                                                <font>
-                                                    <Font name="System Bold" size="14.0" />
-                                                </font>
-                                            </Label>
-                                            <Label text="\@zeynepk" textFill="#868686">
-                                                <font>
-                                                    <Font size="12.0" />
-                                                </font>
-                                            </Label>
-                                        </children>
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Button style="-fx-background-color: transparent; -fx-text-fill: #1e88e5; -fx-font-weight: bold; -fx-cursor: hand;" text="Git &gt;" />
-                                </children>
-                            </HBox>
-                        </VBox>
+                        <VBox fx:id="vboxFriendsList" spacing="10.0" style="-fx-background-color: white;" />
                     </content>
                 </ScrollPane>
+
             </children>
         </VBox>
     </left>

@@ -10,7 +10,10 @@
         "followerUser": [],
         "twitterLink": "",
         "id": 1,
-        "followingUser": [],
+        "followingUser": [
+            2,
+            3
+        ],
         "email": "talha@gmail.com",
         "username": "talhayildiz"
     },

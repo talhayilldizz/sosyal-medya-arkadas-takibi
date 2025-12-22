@@ -76,7 +76,7 @@ public class LoginController extends BaseController implements Initializable, IF
                 String kullaniciAdi=foundUser.getUsername();
                 String cinsiyet=foundUser.getGender();
 
-                mainCtrl.setKullaniciBilgileri(addSoyad, kullaniciAdi, cinsiyet);
+                mainCtrl.setKullaniciBilgileri(addSoyad,kullaniciAdi,cinsiyet);
             }
         } else {
             showMessage("Hata", "Hatalı kullanıcı adı veya şifre!", Alert.AlertType.ERROR);
