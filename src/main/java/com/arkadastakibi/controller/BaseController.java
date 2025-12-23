@@ -16,18 +16,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-// ABSTRACT CLASS: Bu sınıftan nesne üretilemez, sadece miras alınabilir.
 public abstract class BaseController {
 //-----------------------EKRANLA İLGİLİ FONKSİYONLAR(MESAJLAR, EKRAN DEĞİŞİMİ VB.)-------------------
+
     protected App app; // - Ortak uygulama nesnesi
 
     public void setApp(App app) {
         this.app = app;
     }
-    // ENCAPSULATION: Bu metoda sadece miras alan sınıflar (protected) erişebilir.
-    // OVERLOADING 1: Sadece gidilecek yolu verince çalışır.
+    // ENCAPSULATION:Bu metoda sadece miras alan sınıflar (protected) erişebilir.
+    // OVERLOADING 1:Sadece gidilecek yolu verince çalışır.
     protected void changeScene(Event event, String fxmlPath) {
-        changeScene(event, fxmlPath, null); // Diğer metodun çağrılması
+        changeScene(event, fxmlPath, null);
     }
 
     //Generic
@@ -37,10 +37,8 @@ public abstract class BaseController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
-            // 1. Controller'ı uygun tipe cast ederek (dönüştürerek) al
             T controller = (T) loader.getController();
 
-            // 2. app nesnesini aktar (Zaten BaseController'dan türediği için güvenli)
             if (controller instanceof BaseController) {
                 ((BaseController) controller).setApp(this.app);
             }
@@ -53,7 +51,6 @@ public abstract class BaseController {
             }
             stage.show();
 
-            // 3. Zaten yukarıda aldığın 'controller' değişkenini döndür
             return controller;
 
         } catch (IOException e) {
@@ -72,6 +69,7 @@ public abstract class BaseController {
         alert.showAndWait();
     }
  //-------------------------TAKİPÇİLERLE İLGİLİ FONKSİYONLAR----------------------------------------
+
     protected JSONObject findUserByUsername(String username) {
         String filePath = "users.json";
         File file = new File(filePath);
@@ -93,24 +91,18 @@ public abstract class BaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null; // Kullanıcı bulunamadı
+        return null; //Kullanıcı bulunamadı
     }
 
-    /**
-     * Bir kullanıcının diğerini takip edip etmediğini kontrol eder.
-     * @param myUsername Ben (Kontrol eden)
-     * @param targetUsername Hedef (Kontrol edilen)
-     * @return Takip ediyorsa true, etmiyorsa false
-     */
     protected boolean isFollowing(String myUsername, String targetUsername) {
         JSONObject me = findUserByUsername(myUsername);
 
         if (me != null) {
-            // Takip ettiklerimin listesini al (Yoksa boş liste say)
+            //Takip ettiklerimin listesini al (Yoksa boş liste say)
             JSONArray myFollowingList = me.optJSONArray("followingList");
             if (myFollowingList == null) return false;
 
-            // Listeyi tara
+            //Listeyi tara
             for (int i = 0; i < myFollowingList.length(); i++) {
                 if (myFollowingList.getString(i).equals(targetUsername)) {
                     return true;
@@ -120,17 +112,13 @@ public abstract class BaseController {
         return false;
     }
 
-    /**
-     * İki kullanıcı arasındaki ortak takipçi sayısını hesaplar.
-     * (İkisini de takip eden kişilerin sayısı)
-     */
     protected int getMutualFollowersCount(String user1, String user2) {
         JSONObject u1 = findUserByUsername(user1);
         JSONObject u2 = findUserByUsername(user2);
 
         if (u1 == null || u2 == null) return 0;
 
-        // İkisinin de takipçi listesini al
+        //İkisinin de takipçi listesini al
         JSONArray list1 = u1.optJSONArray("followersList");
         JSONArray list2 = u2.optJSONArray("followersList");
 
@@ -138,17 +126,37 @@ public abstract class BaseController {
 
         int count = 0;
 
-        // Kesişim kümesini bul (Ortak eleman sayısı)
+        //Kesişim kümesini bul
         for (int i = 0; i < list1.length(); i++) {
             String followerU1 = list1.getString(i);
 
             for (int j = 0; j < list2.length(); j++) {
                 if (followerU1.equals(list2.getString(j))) {
                     count++;
-                    break; // Bulduk, diğerine geç
+                    break;
                 }
             }
         }
         return count;
+    }
+
+    //App sınıfındaki update() metodunu çağırır.
+    protected void saveAllData() {
+        if (this.app != null) {
+            this.app.update(); // SENİN APP SINIFINDAKİ METODU KULLANIYORUZ
+        }
+    }
+
+    //BİLDİRİM GÖNDERME METODU
+    protected void sendNotificationToUser(com.arkadastakibi.model.User targetUser, String senderName, String message) {
+        if (targetUser == null) return;
+
+        //Yeni bildirim oluştur
+        com.arkadastakibi.model.Notification notif = new com.arkadastakibi.model.Notification(senderName, message);
+
+        //Hedef kişinin listesinin en başına ekle
+        targetUser.getNotifications().add(0, notif);
+
+        saveAllData();
     }
 }

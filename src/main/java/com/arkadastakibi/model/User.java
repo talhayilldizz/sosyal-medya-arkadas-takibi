@@ -2,6 +2,7 @@ package com.arkadastakibi.model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import com.arkadastakibi.model.Notification;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +25,7 @@ public class User {
 
     private ArrayList<Integer> followerUser; //Takipçi
     private ArrayList<Integer> followingUser;
+    private ArrayList<Notification> notifications;
 
 
     public User(int id, String firstName, String lastName, String username,String gender,String password, String email){
@@ -40,6 +42,7 @@ public class User {
         this.tiktokLink = "";
         this.followerUser = new ArrayList<Integer>(); //Takipçi
         this.followingUser = new ArrayList<Integer>();
+        this.notifications = new ArrayList<>();
     }
 
     public User(JSONObject data){
@@ -59,6 +62,7 @@ public class User {
 
         this.followerUser = new ArrayList<>();
         this.followingUser = new ArrayList<>();
+        this.notifications = new ArrayList<>();
 
         JSONArray followerUser_ = data.getJSONArray("followerUser");
         for (int i = 0; i < followerUser_.length(); i++){
@@ -68,6 +72,13 @@ public class User {
         JSONArray followingUser_ = data.getJSONArray("followingUser");
         for (int i = 0; i < followingUser_.length(); i++){
             this.followingUser.add(followingUser_.getInt(i));
+        }
+
+        if (data.has("notifications")) {
+            JSONArray notifsArray = data.getJSONArray("notifications");
+            for (int i = 0; i < notifsArray.length(); i++) {
+                this.notifications.add(new Notification(notifsArray.getJSONObject(i)));
+            }
         }
     }
 
@@ -87,6 +98,12 @@ public class User {
 
         user.put("followerUser",new JSONArray(followerUser));
         user.put("followingUser",new JSONArray(followingUser));
+
+        JSONArray notifsArray = new JSONArray();
+        for(Notification n : this.notifications) {
+            notifsArray.put(n.toJSON());
+        }
+        user.put("notifications", notifsArray);
 
         return user;
     }
@@ -164,4 +181,5 @@ public class User {
     public ArrayList<Integer> getFollowingUser() {
         return followingUser;
     }
+    public ArrayList<Notification> getNotifications() {return notifications;}
 }

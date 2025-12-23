@@ -7,14 +7,19 @@
         "tiktokLink": "",
         "firstName": "Talha",
         "password": "1234",
-        "followerUser": [],
-        "twitterLink": "",
-        "id": 1,
-        "followingUser": [
+        "followerUser": [
             2,
             3
         ],
+        "twitterLink": "",
+        "id": 1,
+        "followingUser": [2],
         "email": "talha@gmail.com",
+        "notifications": [{
+            "time": "23/12 14:40",
+            "message": "seni takip etmeye başladı.",
+            "senderUsername": "nisasahin"
+        }],
         "username": "talhayildiz"
     },
     {
@@ -25,27 +30,38 @@
         "tiktokLink": "",
         "firstName": "Burak",
         "password": "1234",
-        "followerUser": [],
+        "followerUser": [
+            3,
+            1
+        ],
         "twitterLink": "",
         "id": 2,
-        "followingUser": [],
+        "followingUser": [
+            3,
+            1
+        ],
         "email": "burak@gmail.com",
+        "notifications": [],
         "username": "burakiskar"
     },
     {
         "lastName": "Sahin",
         "instagramLink": "",
         "gender": "Kadın",
-        "bio": "",
+        "bio": "bu proje bitsin artik",
         "tiktokLink": "",
-        "firstName": "Nisa",
+        "firstName": "Nisanur",
         "password": "1234",
-        "followerUser": [],
+        "followerUser": [2],
         "twitterLink": "",
         "id": 3,
-        "followingUser": [],
+        "followingUser": [
+            2,
+            1
+        ],
         "email": "nisa@gmail.com",
-        "username": "nisasahin"
+        "notifications": [],
+        "username": "nisanursahin"
     },
     {
         "lastName": "Kaynar",
@@ -60,6 +76,7 @@
         "id": 4,
         "followingUser": [],
         "email": "kerem@gmail.com",
+        "notifications": [],
         "username": "keremkaynar"
     },
     {
@@ -75,6 +92,7 @@
         "id": 5,
         "followingUser": [],
         "email": "emirpeker@gmail.com",
+        "notifications": [],
         "username": "pekerinyo"
     }
 ]
