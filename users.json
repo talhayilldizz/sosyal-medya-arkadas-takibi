@@ -68,6 +68,16 @@
         "email": "nisa@gmail.com",
         "notifications": [
             {
+                "time": "27/12 22:34",
+                "message": "Gönderinizi Beğendi.",
+                "senderUsername": "nisanursahin"
+            },
+            {
+                "time": "27/12 22:33",
+                "message": "Gönderinizi Beğendi.",
+                "senderUsername": "nisanursahin"
+            },
+            {
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
@@ -155,6 +165,11 @@
         "followingUser": [],
         "email": "emirpeker@gmail.com",
         "notifications": [
+            {
+                "time": "27/12 22:33",
+                "message": "Gönderinizi Beğendi.",
+                "senderUsername": "nisanursahin"
+            },
             {
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",

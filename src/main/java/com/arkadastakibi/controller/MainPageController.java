@@ -264,13 +264,24 @@ public class MainPageController extends BaseController {
             boolean likedNow = toggleLike(post);
             updateLikeButton(btnLike, post);
 
-            //beğenildiyse bildirim gönderiyor
+            //Eğer benim hesabımsa kendi postumu beğeniyorsam bildirim gönderme
+            if (postOwner.getId() == loggedUser.getId()) {
+                return;
+            }
+
+            //beğenildiyse bildirim gönderiyor geri çekerse bildirim siliniyor
             if(likedNow){
                 sendNotificationToUser(
                         postOwner,
                         loggedUser.getUsername(),
                         "Gönderinizi Beğendi."
                 );
+            }else{
+                postOwner.getNotifications().removeIf(n ->
+                        n.getSenderUsername().equals(loggedUser.getUsername()) &&
+                                n.getMessage().equals("Gönderinizi Beğendi.")
+                );
+                app.update();
             }
         });
 
