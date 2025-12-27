@@ -1,11 +1,13 @@
 package com.arkadastakibi.controller;
 
 import com.arkadastakibi.interfaces.IFormKontrolu;
+import com.arkadastakibi.model.Post;
 import com.arkadastakibi.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -13,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
@@ -50,6 +53,9 @@ public class UserProfileController extends BaseController implements IFormKontro
     @FXML private TextField txtEditEmail;
     @FXML private TextField txtEditBio;
     @FXML private Label lblEditMessage;
+
+    @FXML private VBox vboxMyPosts;
+    @FXML private Label lblPostTitle;
 
     @Override
     public boolean validateForm() {
@@ -107,6 +113,9 @@ public class UserProfileController extends BaseController implements IFormKontro
                 imgProfile.setImage(new Image(getClass().getResourceAsStream(imagePath)));
             }
         } catch (Exception e) { }
+
+        showMyPosts();
+
     }
 
     //String kontrolü (JSONObject yerine doğrudan string alıyor)
@@ -176,7 +185,9 @@ public class UserProfileController extends BaseController implements IFormKontro
         HBox row = new HBox();
         row.setAlignment(Pos.CENTER_LEFT);
         row.setSpacing(15);
-        row.setStyle("-fx-padding: 10; -fx-border-color: #f0f0f0; -fx-border-width: 0 0 1 0; -fx-background-color: white;");
+
+        // CSS Sınıfı Eklendi
+        row.getStyleClass().add("user-list-row");
 
         Circle avatar = new Circle(20);
         String imgPath = (gender != null && gender.equalsIgnoreCase("Kadin"))
@@ -188,16 +199,20 @@ public class UserProfileController extends BaseController implements IFormKontro
         // İsimler
         VBox nameBox = new VBox(2);
         Label lblName = new Label(fullName);
-        lblName.setStyle("-fx-font-weight: bold; -fx-text-fill: #212529;");
+
+
+        lblName.getStyleClass().add("user-list-name");
+
         Label lblUser = new Label("@" + uName);
-        lblUser.setStyle("-fx-text-fill: #868686; -fx-font-size: 12px;");
+        lblUser.getStyleClass().add("user-list-username");
+
         nameBox.getChildren().addAll(lblName, lblUser);
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         Button btnVisit = new Button("Profili Gör");
-        btnVisit.setStyle("-fx-background-color: transparent; -fx-text-fill: #1e88e5; -fx-cursor: hand; -fx-font-weight: bold;");
+        btnVisit.getStyleClass().add("btn-visit-profile");
 
         btnVisit.setOnAction(e -> {
             //FriendsProfile sayfasına geçiş yap
@@ -330,6 +345,74 @@ public class UserProfileController extends BaseController implements IFormKontro
 
             //Login ekranına at
             changeScene(event, "/com.arkadastakibi/login.fxml", "Giriş Yap");
+        }
+    }
+
+    //Kullanıcının kendi postları
+    public void showMyPosts(){
+        vboxMyPosts.getChildren().clear();
+
+        if(currentUserObj == null || this.app.Posts==null){
+            return;
+        }
+
+        for(Post post : this.app.Posts){
+            if(post.getUserId() != currentUserObj.getId()){
+                continue;
+            }
+
+            lblPostTitle.setVisible(true); //Paylaşımlarım yazısı
+            VBox postBox = new VBox(10);
+
+            postBox.getStyleClass().add("post-box");
+            postBox.setEffect(new DropShadow(10, Color.rgb(0,0,0,0.05)));
+
+            HBox header = new HBox(10);
+            header.setAlignment(Pos.CENTER_LEFT);
+
+            Region spacer = new Region();
+            HBox.setHgrow(spacer, Priority.ALWAYS);
+
+            Button btnDelete = new Button("Sil");
+            // CSS Sınıfı Eklendi
+            btnDelete.getStyleClass().add("btn-delete-post");
+
+            btnDelete.setOnAction(e -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Postu Silmek İstiyormusunuz?");
+                alert.setContentText("Bu işlem geri alınamaz. Devam etmek istiyor musunuz?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    this.app.Posts.remove(post);
+                    saveAllData();
+                    showMyPosts();
+                }
+            });
+
+
+            Circle avatar = new Circle(20, Color.web("#e0e0e0"));
+            VBox titles = new VBox();
+
+            Label nameLbl = new Label(this.currentUserObj.getUsername());
+            // CSS Sınıfı Eklendi
+            nameLbl.getStyleClass().add("post-user-name");
+
+            Label timeLbl = new Label(post.getPostDate().toString());
+            // CSS Sınıfı Eklendi
+            timeLbl.getStyleClass().add("post-time");
+
+            titles.getChildren().addAll(nameLbl, timeLbl);
+            header.getChildren().addAll(avatar, titles, spacer, btnDelete);
+
+            Label contentLbl = new Label(post.getPostContent());
+            contentLbl.setWrapText(true);
+            // CSS Sınıfı Eklendi
+            contentLbl.getStyleClass().add("post-content");
+
+            postBox.getChildren().addAll(header, contentLbl);
+
+            vboxMyPosts.getChildren().add(postBox);
         }
     }
 }

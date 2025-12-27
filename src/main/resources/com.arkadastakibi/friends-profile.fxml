@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f4f6f8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arkadastakibi.controller.FriendsProfileController">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f4f6f8;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arkadastakibi.controller.FriendsProfileController">
 
     <top>
         <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" BorderPane.alignment="CENTER">
@@ -72,7 +72,7 @@
                             <children>
                                 <HBox spacing="20.0" />
 
-                                <VBox onMouseClicked="#showFollowingList" alignment="CENTER" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2); -fx-cursor: hand;">
+                                <VBox alignment="CENTER" onMouseClicked="#showFollowingList" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2); -fx-cursor: hand;">
                                     <children>
                                         <Label fx:id="lblFollowing" text="0" textFill="#1976d2">
                                             <font>
@@ -83,7 +83,7 @@
                                     </children>
                                 </VBox>
 
-                                <VBox onMouseClicked="#showFollowersList" alignment="CENTER" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2); -fx-cursor: hand;">
+                                <VBox alignment="CENTER" onMouseClicked="#showFollowersList" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2); -fx-cursor: hand;">
                                     <children>
                                         <Label fx:id="lblFollowers" text="0" textFill="#2e7d32">
                                             <font>
@@ -94,7 +94,7 @@
                                     </children>
                                 </VBox>
 
-                                <VBox onMouseClicked="#showMutualFollowersList" alignment="CENTER" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2); -fx-cursor: hand;">
+                                <VBox alignment="CENTER" onMouseClicked="#showMutualFollowersList" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2); -fx-cursor: hand;">
                                     <children>
                                         <Label fx:id="lblMutualFollowers" text="0" textFill="#ff9800">
                                             <font>
@@ -127,24 +127,37 @@
                                         <Insets top="20.0" />
                                     </VBox.margin>
                                 </HBox>
+                        <Label fx:id="lblFriendsPostTitle" text="Paylaşımlar" visible="false">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+
+
+
+                                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                                    <content>
+                                        <VBox fx:id="vboxFriendsPosts" spacing="15" style="-fx-padding: 10;" />
+                                    </content>
+                                </ScrollPane>
                             </children>
                         </VBox>
                     </children>
                 </HBox>
 
-                <VBox fx:id="boxListView" spacing="10" visible="false" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;">
+                <VBox fx:id="boxListView" spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" visible="false">
                     <effect>
-                        <DropShadow color="#0000001a" radius="10" width="20" height="20"/>
+                        <DropShadow color="#0000001a" height="20" radius="10" width="20" />
                     </effect>
                     <children>
                         <HBox alignment="CENTER_LEFT" spacing="15">
-                            <Button onAction="#closeListView" text="← Profile Dön" style="-fx-background-color: transparent; -fx-border-color: #5b5b5b; -fx-border-radius: 15; -fx-cursor: hand; -fx-text-fill: #5b5b5b;"/>
-                            <Label fx:id="lblListTitle" text="Liste" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                            <Button onAction="#closeListView" style="-fx-background-color: transparent; -fx-border-color: #5b5b5b; -fx-border-radius: 15; -fx-cursor: hand; -fx-text-fill: #5b5b5b;" text="← Profile Dön" />
+                            <Label fx:id="lblListTitle" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Liste" />
                         </HBox>
                         <Separator />
                         <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: white;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
                             <content>
-                                <VBox fx:id="vboxListContent" spacing="10" style="-fx-padding: 10;"/>
+                                <VBox fx:id="vboxListContent" spacing="10" style="-fx-padding: 10;" />
                             </content>
                         </ScrollPane>
                     </children>

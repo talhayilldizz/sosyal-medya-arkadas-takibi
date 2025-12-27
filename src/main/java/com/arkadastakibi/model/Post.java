@@ -9,16 +9,14 @@ import java.util.Date;
 public class Post {
     private int postId;
     private int userId;
-    private String postTitle;
     private String postContent;
     private String postDate;
     private ArrayList<Integer> likes;
     private ArrayList<Comment>comments;
 
-    public Post(int postId, int userId, String postTitle,String postContent,String postDate){
+    public Post(int postId, int userId,String postContent,String postDate){
         this.postId = postId;
         this.userId = userId;
-        this.postTitle = postTitle;
         this.postContent = postContent;
         this.postDate = postDate;
         this.likes = new ArrayList<>();
@@ -28,7 +26,6 @@ public class Post {
     public Post(JSONObject post){
         this.postId = post.getInt("postId");
         this.userId = post.getInt("userId");
-        this.postTitle = post.getString("postTitle");
         this.postContent = post.getString("postContent");
         this.postDate = post.getString("postDate");
 
@@ -52,14 +49,11 @@ public class Post {
         JSONObject obj = new JSONObject();
         obj.put("postId", postId);
         obj.put("userId", userId);
-        obj.put("postTitle", postTitle);
         obj.put("postContent", postContent);
         obj.put("postDate", postDate);
-        obj.put("likes", likes);
-        obj.put("comments", comments);
 
-        obj.put("followerUser",new JSONArray(likes));
-        obj.put("followingUser",new JSONArray(comments));
+        obj.put("likes",new JSONArray(likes));
+        obj.put("comments",new JSONArray(comments));
 
         return obj;
     }
@@ -75,12 +69,6 @@ public class Post {
     }
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-    public String getPostTitle() {
-        return postTitle;
-    }
-    public void setPostTitle(String postTitle) {
-        this.postTitle = postTitle;
     }
     public String getPostContent() {
         return postContent;

@@ -1,11 +1,13 @@
 package com.arkadastakibi.controller;
 
+import com.arkadastakibi.model.Post;
 import com.arkadastakibi.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -13,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import org.json.JSONArray;
@@ -41,6 +44,10 @@ public class FriendsProfileController extends BaseController {
     @FXML private VBox boxListView;
     @FXML private Label lblListTitle;
     @FXML private VBox vboxListContent;
+
+
+    @FXML private VBox vboxFriendsPosts;
+    @FXML private Label lblFriendsPostTitle;
 
     private String targetUsername; // Arkadaş
     private String myUsername;     // Ben
@@ -107,6 +114,8 @@ public class FriendsProfileController extends BaseController {
 
         // Takip Et Butonu Durumu
         updateFollowButtonState();
+
+        friendsPost();
     }
 
     private void checkSocialLink(String link, Button btn) {
@@ -367,5 +376,44 @@ public class FriendsProfileController extends BaseController {
             System.out.println("Kayıt hatası: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+
+    //Kullanıcıların sayfasında kendi postları
+    public void friendsPost(){
+        vboxFriendsPosts.getChildren().clear();
+
+        if(targetUserObj == null || this.app.Posts==null) return;
+
+        for(Post post : this.app.Posts){
+            if(targetUserObj.getId() != post.getUserId()){
+                continue;
+            }
+
+            lblFriendsPostTitle.setVisible(true);
+            VBox postBox = new VBox(10);
+            postBox.setStyle("-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;");
+            postBox.setEffect(new DropShadow(10, Color.rgb(0,0,0,0.05)));
+
+            HBox header = new HBox(10);
+            header.setAlignment(Pos.CENTER_LEFT);
+            Circle avatar = new Circle(20, Color.web("#e0e0e0"));
+            VBox titles = new VBox();
+            Label nameLbl = new Label(this.targetUserObj.getUsername());
+            nameLbl.setStyle("-fx-font-weight: bold; -fx-text-fill: #212529; -fx-font-size: 15px;");
+            Label timeLbl = new Label(post.getPostDate().toString());
+            timeLbl.setStyle("-fx-text-fill: #868686; -fx-font-size: 12px;");
+            titles.getChildren().addAll(nameLbl, timeLbl);
+            header.getChildren().addAll(avatar, titles);
+
+            Label contentLbl = new Label(post.getPostContent());
+            contentLbl.setWrapText(true);
+            contentLbl.setStyle("-fx-text-fill: #212529; -fx-font-size: 14px;");
+
+            postBox.getChildren().addAll(header, contentLbl);
+
+            vboxFriendsPosts.getChildren().add(postBox);
+        }
+
     }
 }

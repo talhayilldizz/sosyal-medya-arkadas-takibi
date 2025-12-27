@@ -3,7 +3,7 @@
         "lastName": "Yıldız",
         "instagramLink": "",
         "gender": "Erkek",
-        "bio": "",
+        "bio": "marmara-ceng",
         "tiktokLink": "",
         "firstName": "Talha",
         "password": "1234",
@@ -13,7 +13,10 @@
         ],
         "twitterLink": "",
         "id": 1,
-        "followingUser": [2],
+        "followingUser": [
+            2,
+            3
+        ],
         "email": "talha@gmail.com",
         "notifications": [{
             "time": "23/12 14:40",
@@ -52,7 +55,10 @@
         "tiktokLink": "",
         "firstName": "Nisanur",
         "password": "1234",
-        "followerUser": [2],
+        "followerUser": [
+            2,
+            1
+        ],
         "twitterLink": "",
         "id": 3,
         "followingUser": [
@@ -60,7 +66,18 @@
             1
         ],
         "email": "nisa@gmail.com",
-        "notifications": [],
+        "notifications": [
+            {
+                "time": "27/12 17:12",
+                "message": "Gönderine yorum yaptı",
+                "senderUsername": "talhayildiz"
+            },
+            {
+                "time": "27/12 14:30",
+                "message": "seni takip etmeye başladı.",
+                "senderUsername": "talhayildiz"
+            }
+        ],
         "username": "nisanursahin"
     },
     {
@@ -92,7 +109,19 @@
         "id": 5,
         "followingUser": [],
         "email": "emirpeker@gmail.com",
-        "notifications": [],
+        "notifications": [
+            {
+                "time": "27/12 17:15",
+                "message": "Gönderinizi Beğendi.",
+                "senderUsername": "pekerinyo"
+            },
+            {
+                "time": "27/12 17:13",
+                "message": "Gönderine yorum yaptı",
+                "senderUsername": "nisanursahin"
+            }
+
+        ],
         "username": "pekerinyo"
     }
 ]

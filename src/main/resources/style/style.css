@@ -1,0 +1,210 @@
+/* Genel Ayarlar */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Kart Yapıları (Share Box & Post Box) */
+.card-view {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.post-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);
+}
+
+/* Etiketler (Labels) */
+.lbl-secondary-header {
+    -fx-font-weight: bold;
+    -fx-text-fill: #6c757d;
+    -fx-font-size: 14px;
+}
+
+.lbl-username {
+    -fx-font-weight: bold;
+    -fx-text-fill: #212529;
+    -fx-font-size: 15px;
+}
+
+.lbl-time {
+    -fx-text-fill: #868686;
+    -fx-font-size: 12px;
+}
+
+.lbl-post-content {
+    -fx-text-fill: #212529;
+    -fx-font-size: 14px;
+}
+
+.lbl-page-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #212529;
+}
+
+.lbl-placeholder {
+    -fx-text-fill: #868686;
+    -fx-font-size: 14px;
+    -fx-padding: 20;
+}
+
+.lbl-comment-bubble {
+    -fx-background-color: #f1f3f5;
+    -fx-padding: 6;
+    -fx-background-radius: 8;
+    -fx-text-fill: #212529;
+}
+
+/* Input Alanları (TextArea) */
+.txt-area-input {
+    -fx-background-color: transparent;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+/* TextArea'nın içindeki viewport'un şeffaf olması için */
+.txt-area-input .viewport, .txt-area-input .content {
+    -fx-background-color: transparent;
+}
+
+/* Butonlar */
+.btn-primary {
+    -fx-background-color: #1e88e5;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.btn-action {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-text-fill: #6c757d;
+}
+
+.btn-back {
+    -fx-background-color: white;
+    -fx-text-fill: #1e88e5;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-border-color: #1e88e5;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 5 15 5 15;
+}
+
+.btn-send-comment {
+    -fx-background-color: #1e88e5;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+/* Bildirim Listesi */
+.notification-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);
+}
+
+.lbl-notif-user {
+    -fx-font-weight: bold;
+    -fx-text-fill: #212529;
+}
+
+.lbl-notif-action {
+    -fx-text-fill: #495057;
+}
+
+.lbl-notif-time {
+    -fx-text-fill: #868686;
+    -fx-font-size: 11px;
+}
+
+/* Kullanıcı Listesi (Sidebar) */
+.user-list-row {
+    -fx-cursor: hand;
+    -fx-padding: 8;
+    -fx-border-color: #f0f0f0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.lbl-list-name {
+    -fx-font-weight: bold;
+    -fx-text-fill: #212529;
+    -fx-font-size: 13px;
+}
+
+.lbl-list-username {
+    -fx-text-fill: #868686;
+    -fx-font-size: 11px;
+}
+
+.btn-text-link {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1e88e5;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-font-size: 11px;
+}
+
+/* --- Profil Sayfası Takipçi/Takip Edilen Listesi --- */
+.user-list-row {
+    -fx-padding: 10;
+    -fx-border-color: #f0f0f0;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: white;
+}
+
+.user-list-name {
+    -fx-font-weight: bold;
+    -fx-text-fill: #212529;
+}
+
+.user-list-username {
+    -fx-text-fill: #868686;
+    -fx-font-size: 12px;
+}
+
+.btn-visit-profile {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1e88e5;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+/* --- Profil Sayfası Postlarım Bölümü --- */
+.post-box {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+}
+
+.btn-delete-post {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e53935; /* Kırmızı renk */
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.post-user-name {
+    -fx-font-weight: bold;
+    -fx-text-fill: #212529;
+    -fx-font-size: 15px;
+}
+
+.post-time {
+    -fx-text-fill: #868686;
+    -fx-font-size: 12px;
+}
+
+.post-content {
+    -fx-text-fill: #212529;
+    -fx-font-size: 14px;
+}

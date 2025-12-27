@@ -1,31 +1,30 @@
-[{
-    "comments": [{
-        "postDate": "2025-12-20",
-        "id": 1,
-        "postId": 1,
-        "userId": 2,
-        "content": "Hoş geldin!"
-    }],
-    "postContent": "Post Açıklama",
-    "followerUser": [
-        3,
-        7,
-        15
-    ],
-    "postDate": "2025-12-20",
-    "postTitle": "Post Başlık",
-    "postId": 1,
-    "userId": 1,
-    "followingUser": [{
-        "postDate": "2025-12-20",
-        "id": 1,
-        "postId": 1,
-        "userId": 2,
-        "content": "Hoş geldin!"
-    }],
-    "likes": [
-        3,
-        7,
-        15
-    ]
-}]
+[
+    {
+        "comments": [{
+            "postDate": "17:12",
+            "id": 1,
+            "postId": 5,
+            "userId": 1,
+            "content": "merhaba nisa"
+        }],
+        "postContent": "merhaba",
+        "postDate": "27/12/2025",
+        "postId": 5,
+        "userId": 3,
+        "likes": [1]
+    },
+    {
+        "comments": [{
+            "postDate": "17:13",
+            "id": 2,
+            "postId": 6,
+            "userId": 3,
+            "content": "iyiyim sen nasılsın pekerinyo"
+        }],
+        "postContent": "selam merhaba nasılsınız?",
+        "postDate": "27/12/2025",
+        "postId": 6,
+        "userId": 5,
+        "likes": [5]
+    }
+]
