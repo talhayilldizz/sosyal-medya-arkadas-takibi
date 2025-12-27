@@ -49,6 +49,11 @@ public class LoginController extends BaseController implements Initializable, IF
         return !txtUsername.getText().trim().isEmpty() && !txtPassword.getText().trim().isEmpty();
     }
 
+    @Override
+    public boolean isValidEmail(String email) {
+        return false;
+    }
+
     private void handleLogin(ActionEvent event) {
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText().trim();

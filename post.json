@@ -1,20 +1,6 @@
 [
     {
         "comments": [{
-            "postDate": "17:12",
-            "id": 1,
-            "postId": 5,
-            "userId": 1,
-            "content": "merhaba nisa"
-        }],
-        "postContent": "merhaba",
-        "postDate": "27/12/2025",
-        "postId": 5,
-        "userId": 3,
-        "likes": [1]
-    },
-    {
-        "comments": [{
             "postDate": "17:13",
             "id": 2,
             "postId": 6,
@@ -26,5 +12,13 @@
         "postId": 6,
         "userId": 5,
         "likes": [5]
+    },
+    {
+        "comments": [],
+        "postContent": "merhaba",
+        "postDate": "27/12/2025",
+        "postId": 7,
+        "userId": 3,
+        "likes": []
     }
 ]

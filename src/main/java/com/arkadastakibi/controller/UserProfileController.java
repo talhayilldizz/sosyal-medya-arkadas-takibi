@@ -65,6 +65,11 @@ public class UserProfileController extends BaseController implements IFormKontro
                 !txtEditEmail.getText().trim().isEmpty();
     }
 
+    @Override
+    public boolean isValidEmail(String email) {
+        return false;
+    }
+
     public void setKullaniciAdi(String username) {
         this.currentUsername = username;
         kullaniciVerileriniYukle();

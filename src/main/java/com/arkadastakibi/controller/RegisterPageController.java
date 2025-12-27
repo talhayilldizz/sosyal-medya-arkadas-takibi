@@ -66,6 +66,12 @@ public class RegisterPageController extends BaseController implements Initializa
                 !txtConfirmPassword.getText().isEmpty();
     }
 
+    @Override
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\\.com$";
+        return email != null && email.matches(emailRegex);
+    }
+
     private void handleRegister(){
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
@@ -85,13 +91,23 @@ public class RegisterPageController extends BaseController implements Initializa
             return;
         }
 
+        if(!isValidEmail(email)) {
+            lblMessage.setText("Geçersiz E-posta Formatı!");
+            lblMessage.setVisible(true);
+            return;
+        }
+
         if(!password.equals(confirmPassword)) {
             lblMessage.setText("Şifreler Uyuşmuyor!");
             lblMessage.setVisible(true);
             return;
         }
 
-
+        if((password.length() < 6)) {
+            lblMessage.setText("Şifreniz en az 6 karakter olmalıdır!");
+            lblMessage.setVisible(true);
+            return;
+        }
 
         boolean success=saveUserToFile(firstName,lastName,username,email,password,gender);
 
