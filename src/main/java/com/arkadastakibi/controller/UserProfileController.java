@@ -18,6 +18,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import java.awt.Desktop;
+import java.net.URI;
+
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -63,6 +66,118 @@ public class UserProfileController extends BaseController implements IFormKontro
                 !txtEditSurname.getText().trim().isEmpty() &&
                 !txtEditUsername.getText().trim().isEmpty() &&
                 !txtEditEmail.getText().trim().isEmpty();
+    }
+
+
+    private boolean confirmOwnership() {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setHeaderText("Hesap Doğrulama");
+        confirm.setContentText("Bu hesap size ait mi?");
+
+        Optional<ButtonType> result = confirm.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
+    private void openLinkInBrowser(String url) {
+        try {
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void connectInstagram() {
+
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Instagram Hesabı Ekle");
+        dialog.setHeaderText("Instagram kullanıcı adınızı girin");
+        dialog.setContentText("Kullanıcı Adı:");
+
+        Optional<String> result = dialog.showAndWait();
+
+        if (result.isEmpty() || result.get().trim().isEmpty()) {
+            return;
+        }
+
+        String username = result.get().trim();
+        String profileUrl = "https://www.instagram.com/" + username;
+
+        // Tarayıcıda aç
+        openLinkInBrowser(profileUrl);
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setHeaderText("Hesap Doğrulama");
+        confirm.setContentText("Bu Instagram hesabı size ait mi?");
+
+        Optional<ButtonType> confirmResult = confirm.showAndWait();
+        if (confirmResult.isPresent() && confirmResult.get() == ButtonType.OK) {
+
+            currentUserObj.setInstagramLink(profileUrl);
+            saveAllData();
+
+            //kullaniciVerileriniYukle();
+            showMessage("Başarılı", "Instagram hesabı eklendi.", Alert.AlertType.INFORMATION);
+        }
+    }
+    @FXML
+    private void connectTwitter() {
+
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Twitter Hesabı Ekle");
+        dialog.setHeaderText("Twitter kullanıcı adınızı girin");
+        dialog.setContentText("Kullanıcı Adı:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isEmpty()) return;
+
+        String username = result.get().trim();
+        String profileUrl = "https://twitter.com/" + username;
+
+        openLinkInBrowser(profileUrl);
+
+        if (confirmOwnership()) {
+            currentUserObj.setTwitterLink(profileUrl);
+            saveAllData();
+            //kullaniciVerileriniYukle();
+        }
+    }
+    @FXML
+    private void connectTiktok() {
+
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("TikTok Hesabı Ekle");
+        dialog.setHeaderText("TikTok kullanıcı adınızı girin");
+        dialog.setContentText("Kullanıcı Adı:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isEmpty()) return;
+
+        String username = result.get().trim();
+        String profileUrl = "https://www.tiktok.com/@" + username;
+
+        openLinkInBrowser(profileUrl);
+
+        if (confirmOwnership()) {
+            currentUserObj.setTiktokLink(profileUrl);
+            saveAllData();
+            //kullaniciVerileriniYukle();
+        }
+    }
+
+    @FXML
+    private void InstagramClick(){
+        openLinkInBrowser(this.currentUserObj.getInstagramLink());
+    }
+
+    @FXML
+    private void TwitterClick(){
+        openLinkInBrowser(this.currentUserObj.getTwitterLink());
+    }
+
+    @FXML
+    private void TiktokClick(){
+        openLinkInBrowser(this.currentUserObj.getTiktokLink());
     }
 
     @Override
@@ -125,6 +240,7 @@ public class UserProfileController extends BaseController implements IFormKontro
 
     //String kontrolü (JSONObject yerine doğrudan string alıyor)
     private void checkSocialLink(String link, Button btn) {
+        System.out.println(link == null || link.isEmpty());
         if (link == null || link.isEmpty()) {
             btn.setDisable(true);
             btn.setOpacity(0.5);

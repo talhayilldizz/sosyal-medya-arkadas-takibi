@@ -19,7 +19,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import org.json.JSONArray;
-
+import java.awt.Desktop;
+import java.awt.*;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +56,8 @@ public class FriendsProfileController extends BaseController {
 
     private User targetUserObj; // Hedef Kullanıcı Nesnesi
     private User myUserObj;     // Benim Nesnem
+
+
 
     public void setArkadasBilgileri(String targetUser, String currentUser) {
         this.targetUsername = targetUser;
@@ -116,6 +120,29 @@ public class FriendsProfileController extends BaseController {
         updateFollowButtonState();
 
         friendsPost();
+    }
+
+
+    private void openLinkInBrowser(String url) {
+        try {
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void InstagramClicked(){
+        openLinkInBrowser(this.targetUserObj.getInstagramLink());
+    }
+
+    @FXML
+    private void TwitterClicked(){
+        openLinkInBrowser(this.targetUserObj.getTwitterLink());
+    }
+
+    @FXML
+    private void TiktokClicked(){
+        openLinkInBrowser(this.targetUserObj.getTiktokLink());
     }
 
     private void checkSocialLink(String link, Button btn) {

@@ -56,9 +56,9 @@ public class User {
         this.gender = data.optString("gender", "Belirtilmemiş");
         this.bio = data.optString("bio", "");
 
-        this.instagramLink = data.optString("instagram","");
-        this.twitterLink = data.optString("twitter","");
-        this.tiktokLink = data.optString("tiktok","");
+        this.instagramLink = data.optString("instagramLink","");
+        this.twitterLink = data.optString("twitterLink","");
+        this.tiktokLink = data.optString("tiktokLink","");
 
         this.followerUser = new ArrayList<>();
         this.followingUser = new ArrayList<>();
@@ -151,7 +151,7 @@ public class User {
         this.bio = bio;
     }
     public String getInstagramLink() {
-        return instagramLink;
+        return this.instagramLink;
     }
     public void setInstagramLink(String instagramLink) {
         this.instagramLink = instagramLink;

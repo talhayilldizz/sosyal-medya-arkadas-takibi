@@ -104,17 +104,17 @@
 
                                 <HBox alignment="TOP_CENTER" prefHeight="74.0" prefWidth="588.0" spacing="20.0">
                                     <children>
-                                        <Button fx:id="btnInstagram" prefHeight="60.0" prefWidth="140.0" style="-fx-background-color: #E1306C; -fx-background-radius: 5; -fx-cursor: hand;" text="Instagram" textFill="WHITE">
+                                        <Button fx:id="btnInstagram" onAction="#InstagramClick" prefHeight="60.0" prefWidth="140.0" style="-fx-background-color: #E1306C; -fx-background-radius: 5; -fx-cursor: hand;" text="Instagram" textFill="WHITE">
                                             <font>
                                                 <Font name="System Bold" size="14.0" />
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnTwitter" prefHeight="60.0" prefWidth="140.0" style="-fx-background-color: #2196f3; -fx-background-radius: 5; -fx-cursor: hand;" text="Twitter" textFill="WHITE">
+                                        <Button fx:id="btnTwitter" onAction="#TwitterClick" prefHeight="60.0" prefWidth="140.0" style="-fx-background-color: #2196f3; -fx-background-radius: 5; -fx-cursor: hand;" text="Twitter" textFill="WHITE">
                                             <font>
                                                 <Font name="System Bold" size="14.0" />
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnTiktok" prefHeight="60.0" prefWidth="140.0" style="-fx-background-color: #ff9900; -fx-background-radius: 5; -fx-cursor: hand;" text="TikTok" textFill="WHITE">
+                                        <Button fx:id="btnTiktok" onAction="#TiktokClick" prefHeight="60.0" prefWidth="140.0" style="-fx-background-color: #ff9900; -fx-background-radius: 5; -fx-cursor: hand;" text="TikTok" textFill="WHITE">
                                             <font>
                                                 <Font name="System Bold" size="14.0" />
                                             </font>
@@ -189,11 +189,44 @@
 
                         <Label fx:id="lblEditMessage" style="-fx-text-fill: red;" text="" visible="false" />
 
-                        <Button maxWidth="1.7976931348623157E308" onAction="#saveProfileChanges" style="-fx-background-color: #2196f3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 10;" text="Değişiklikleri Kaydet">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Button>
+                        <Button maxWidth="1.7976931348623157E308"
+                                onAction="#saveProfileChanges"
+                                style="-fx-background-color: #2196f3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 10;"
+                                text="Değişiklikleri Kaydet" />
+
+                        <Separator />
+
+                        <Label text="Sosyal Medya Hesapları"
+                               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #6c757d;" />
+
+                        <HBox alignment="CENTER" spacing="15">
+
+                            <Button fx:id="btnEditInstagram"
+                                    prefHeight="45.0"
+                                    prefWidth="140.0"
+                                    onAction="#connectInstagram"
+                                    style="-fx-background-color: #E1306C; -fx-background-radius: 5; -fx-cursor: hand;"
+                                    text="Instagram"
+                                    textFill="WHITE" />
+
+                            <Button fx:id="btnEditTwitter"
+                                    prefHeight="45.0"
+                                    prefWidth="140.0"
+                                    onAction="#connectTwitter"
+                                    style="-fx-background-color: #2196f3; -fx-background-radius: 5; -fx-cursor: hand;"
+                                    text="Twitter"
+                                    textFill="WHITE" />
+
+                            <Button fx:id="btnEditTiktok"
+                                    prefHeight="45.0"
+                                    prefWidth="140.0"
+                                    onAction="#connectTiktok"
+                                    style="-fx-background-color: #ff9900; -fx-background-radius: 5; -fx-cursor: hand;"
+                                    text="TikTok"
+                                    textFill="WHITE" />
+
+                        </HBox>
+
                     </children>
                 </VBox>
 
