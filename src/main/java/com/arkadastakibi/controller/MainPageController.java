@@ -291,7 +291,8 @@ public class MainPageController extends BaseController {
         }
 
         //yorum işlemleri
-        Button btnComment = new Button("Yorum");
+        int commentCount=post.getComments().size();
+        Button btnComment = new Button("Yorum ("+commentCount+")" );
         btnComment.getStyleClass().add("btn-action");
 
         actions.getChildren().addAll(btnLike, btnComment);

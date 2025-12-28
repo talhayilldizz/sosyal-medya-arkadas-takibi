@@ -1,12 +1,21 @@
 [
     {
-        "comments": [{
-            "postDate": "17:13",
-            "id": 2,
-            "postId": 6,
-            "userId": 3,
-            "content": "iyiyim sen nasılsın pekerinyo"
-        }],
+        "comments": [
+            {
+                "postDate": "17:13",
+                "id": 2,
+                "postId": 6,
+                "userId": 3,
+                "content": "iyiyim sen nasılsın pekerinyo"
+            },
+            {
+                "postDate": "11:37",
+                "id": 3,
+                "postId": 6,
+                "userId": 1,
+                "content": "süperim"
+            }
+        ],
         "postContent": "selam merhaba nasılsınız?",
         "postDate": "27/12/2025",
         "postId": 6,

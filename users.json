@@ -166,6 +166,11 @@
         "email": "emirpeker@gmail.com",
         "notifications": [
             {
+                "time": "28/12 11:37",
+                "message": "Gönderine yorum yaptı",
+                "senderUsername": "talhayildiz"
+            },
+            {
                 "time": "27/12 22:33",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
