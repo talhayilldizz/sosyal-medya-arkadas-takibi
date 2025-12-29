@@ -351,6 +351,16 @@ public class UserProfileController extends BaseController implements IFormKontro
 
     @FXML
     void AnaSayfayaGeriDon(ActionEvent event) {
+        //Eğer düzenleme kısmı açıksa geri dönüşte bu ekranı kapat, normal profilim ekranına gel
+        if (boxEditView.isVisible()) {
+            closeEditProfile(null);
+            return;
+        }
+        if (boxListView.isVisible()) {
+            closeListView(null);
+            return;
+        }
+
         MainPageController mainCtrl = changeScene(event, "/com.arkadastakibi/main-page.fxml", "Ana Sayfa");
 
         if (mainCtrl != null && this.app.Users != null) {
