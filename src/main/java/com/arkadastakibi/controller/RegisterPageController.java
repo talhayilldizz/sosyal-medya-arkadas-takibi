@@ -108,6 +108,11 @@ public class RegisterPageController extends BaseController implements Initializa
             lblMessage.setVisible(true);
             return;
         }
+        if(isUserExist(username,email)){
+            lblMessage.setText("Bu Mail veya Kullanıcı Adı Sistemde Kayıtlı");
+            lblMessage.setVisible(true);
+            return;
+        }
 
         boolean success=saveUserToFile(firstName,lastName,username,email,password,gender);
 
@@ -133,9 +138,7 @@ public class RegisterPageController extends BaseController implements Initializa
     //Aynı mail ve kullanıcı adı kontrolü
     private boolean isUserExist(String username, String email){
         for(User user : this.app.Users){
-            String tempUsername=user.getUsername();
-            String tempMail=user.getEmail();
-            if(tempUsername.equals(username) || tempMail.equals(email)){
+            if(user.getUsername().equals(username) || user.getEmail().equals(email)){
                 return true;
             }
         }
@@ -147,11 +150,7 @@ public class RegisterPageController extends BaseController implements Initializa
     //Kullanıcıyı dosyaya ekler
     private boolean saveUserToFile(String fName, String lName, String uName, String mail, String pass, String gender){
 
-           if(isUserExist(uName,mail)){
-               lblMessage.setText("Bu Mail veya Kullanıcı Adı Sistemde Kayıtlı");
-               lblMessage.setVisible(true);
-               return false;
-           }
+
 
            int newID=getNextID();
 

@@ -486,6 +486,34 @@ public class MainPageController extends BaseController {
         }
     }
 
+    @FXML
+    public void searchUser(){
+        String uName=txtSearch.getText().toLowerCase().trim();
+
+        vboxAllUsers.getChildren().clear();
+
+        if(app.Users == null && this.loggedUser == null){
+            return;
+        }
+
+        for(User user : app.Users){
+            if(user.getId() == loggedUser.getId()){
+                continue;
+            }
+
+            String username = user.getUsername().toLowerCase();
+            if(uName.isEmpty() || username.contains(uName)){
+                vboxAllUsers.getChildren().add(createUserRow(user));
+            }
+        }
+
+        if (vboxAllUsers.getChildren().isEmpty()) {
+            Label lblEmpty = new Label("Kullanıcı bulunamadı");
+            lblEmpty.getStyleClass().add("lbl-placeholder");
+            vboxAllUsers.getChildren().add(lblEmpty);
+        }
+    }
+
     public void CikisYap(ActionEvent event) {
         changeScene(event, "/com.arkadastakibi/login.fxml", "Giriş Yap");
     }

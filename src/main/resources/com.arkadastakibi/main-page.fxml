@@ -26,7 +26,7 @@
                     </font>
                 </Label>
 
-                <TextField fx:id="txtSearch" promptText="Kullanıcı ara..." style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 8;">
+                <TextField fx:id="txtSearch" promptText="Kullanıcı ara..." style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 20; -fx-background-radius: 20; -fx-padding: 8;" onKeyReleased="#searchUser">
                     <font>
                         <Font size="13.0" />
                     </font>
