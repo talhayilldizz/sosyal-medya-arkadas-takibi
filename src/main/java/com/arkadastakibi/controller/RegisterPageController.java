@@ -52,8 +52,8 @@ public class RegisterPageController extends BaseController implements Initializa
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnRegister.setOnAction(event -> handleRegister()); //Butona Basınca çalışacak
-        linkLogin.setOnAction(event -> navigateToLogin(event)); //Logine gönderecek
+        btnRegister.setOnAction(event -> handleRegister());
+        linkLogin.setOnAction(event -> navigateToLogin(event));
     }
 
     @Override

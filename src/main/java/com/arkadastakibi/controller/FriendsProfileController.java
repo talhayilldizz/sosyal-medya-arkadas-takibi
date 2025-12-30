@@ -51,11 +51,11 @@ public class FriendsProfileController extends BaseController {
     @FXML private VBox vboxFriendsPosts;
     @FXML private Label lblFriendsPostTitle;
 
-    private String targetUsername; // Arkadaş
-    private String myUsername;     // Ben
+    private String targetUsername; //Arkadaş
+    private String myUsername;     //Ben
 
-    private User targetUserObj; // Hedef Kullanıcı Nesnesi
-    private User myUserObj;     // Benim Nesnem
+    private User targetUserObj; //Hedef Kullanıcı Nesnesi
+    private User myUserObj;     //Benim Nesnem
 
 
 
@@ -71,7 +71,6 @@ public class FriendsProfileController extends BaseController {
 
         if(this.app == null || this.app.Users == null) return;
 
-        //Kullanıcıları databaseten(app.Users) kullanıcı adına göre buluyoruz
         this.targetUserObj = null;
         this.myUserObj = null;
 
@@ -86,7 +85,7 @@ public class FriendsProfileController extends BaseController {
 
         if (this.targetUserObj == null) return;
 
-        // Verileri Ekrana Bas
+        //Verileri Ekrana yaz
         String fullName = targetUserObj.getFirstName() + " " + targetUserObj.getLastName();
         lblName.setText(fullName);
         lblEmail.setText("@" + targetUserObj.getUsername());
@@ -94,14 +93,14 @@ public class FriendsProfileController extends BaseController {
         String bio = targetUserObj.getBio();
         lblBio.setText((bio == null || bio.isEmpty()) ? "Biyografi yok." : bio);
 
-        // Veritabanındaki ID listesinin uzunluğunu alıyoruz
+        //Veritabanındaki ID listesinin uzunluğunu alıyoruz
         lblFollowers.setText(String.valueOf(targetUserObj.getFollowerUser().size()));
         lblFollowing.setText(String.valueOf(targetUserObj.getFollowingUser().size()));
 
-        // Ortak Takipçi Sayısı
+        //Ortak Takipçi Sayısı
         lblMutualFollowers.setText(String.valueOf(calculateMutualFollowersCount()));
 
-        // Avatar
+        //Avatar
         String gender = targetUserObj.getGender();
         String imagePath = (gender != null && gender.equalsIgnoreCase("Kadin"))
                 ? "/images/woman.png" : "/images/man.png";
@@ -111,12 +110,12 @@ public class FriendsProfileController extends BaseController {
             }
         } catch (Exception e) { }
 
-        // Sosyal Medya Link Kontrolü
+        //Sosyal Medya Link Kontrolü
         checkSocialLink(targetUserObj.getInstagramLink(), btnInstagram);
         checkSocialLink(targetUserObj.getTwitterLink(), btnTwitter);
         checkSocialLink(targetUserObj.getTiktokLink(), btnTiktok);
 
-        // Takip Et Butonu Durumu
+        //Takip Et Butonu Durumu
         updateFollowButtonState();
 
         friendsPost();
@@ -155,12 +154,12 @@ public class FriendsProfileController extends BaseController {
         }
     }
 
-    // Ortak Takipçi Sayısı: Hem beni hem onu takip edenlerin ID kesişimi
+    //Ortak Takipçi Sayısı
     private int calculateMutualFollowersCount() {
         if (this.targetUserObj == null || this.myUserObj == null) return 0;
 
-        ArrayList<Integer> targetFollowers = this.targetUserObj.getFollowerUser(); // Onun takipçileri (ID)
-        ArrayList<Integer> myFollowers = this.myUserObj.getFollowerUser();         // Benim takipçilerim (ID)
+        ArrayList<Integer> targetFollowers = this.targetUserObj.getFollowerUser();
+        ArrayList<Integer> myFollowers = this.myUserObj.getFollowerUser();
 
         int count = 0;
         for (Integer id : targetFollowers) {
@@ -186,7 +185,7 @@ public class FriendsProfileController extends BaseController {
                 btnFollow.setText("Takip Et");
                 btnFollow.setStyle("-fx-background-color: #1e88e5; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(30,136,229,0.3), 10, 0, 0, 5);");
 
-                // Takip et butonuna basınca toggleFollow çalışacak
+                //Takip et butonuna basınca toggleFollow çalışacak
                 btnFollow.setOnAction(this::toggleFollow);
             }
         }
@@ -287,7 +286,7 @@ public class FriendsProfileController extends BaseController {
         row.setSpacing(15);
         row.setStyle("-fx-padding: 10; -fx-border-color: #f0f0f0; -fx-border-width: 0 0 1 0; -fx-background-color: white;");
 
-        // Avatar
+        //Avatar
         Circle avatar = new Circle(20);
         String imgPath = (gender != null && gender.equalsIgnoreCase("Kadin"))
                 ? "/images/woman.png" : "/images/man.png";
@@ -310,7 +309,7 @@ public class FriendsProfileController extends BaseController {
         Button btnVisit = new Button("Profili Gör");
         btnVisit.setStyle("-fx-background-color: transparent; -fx-text-fill: #1e88e5; -fx-cursor: hand; -fx-font-weight: bold;");
 
-        //eğer listedeki kişi şu anki arkadaş ise butonu gizle
+        //Eğer listedeki kişi şu anki arkadaş ise butonu gizle
         if (uName.equals(this.targetUsername)) {
             btnVisit.setVisible(false);
         }
@@ -353,12 +352,12 @@ public class FriendsProfileController extends BaseController {
         boolean isFollowing = this.myUserObj.getFollowingUser().contains(this.targetUserObj.getId());
 
         if (isFollowing) {
-            //TAKİBİ BIRAKMA İŞLEMİ
+            //Takibi bırakma işlemi
             this.myUserObj.getFollowingUser().remove(Integer.valueOf(this.targetUserObj.getId()));
             this.targetUserObj.getFollowerUser().remove(Integer.valueOf(this.myUserObj.getId()));
 
         } else {
-            //TAKİP ETME İŞLEMİ
+            //Takip etme işlemi
             this.myUserObj.getFollowingUser().add(this.targetUserObj.getId());
             this.targetUserObj.getFollowerUser().add(this.myUserObj.getId());
 
@@ -369,19 +368,17 @@ public class FriendsProfileController extends BaseController {
             );
         }
 
-        // Arayüzü Güncelle
         updateFollowButtonState();
         updateFollowerCountLabel();
 
-        // Verileri Kaydet
         saveData();
     }
-    //Ekrandaki takipçi sayısını anlık güncellemek için yardımcı metot
+    //Ekrandaki takipçi sayısını anlık güncellemek için
     private void updateFollowerCountLabel() {
         if (targetUserObj != null) {
             lblFollowers.setText(String.valueOf(targetUserObj.getFollowerUser().size()));
 
-            // Eğer ortak takipçi sayısı da değiştiyse güncelle
+            //Eğer ortak takipçi sayısı da değiştiyse güncelle
             lblMutualFollowers.setText(String.valueOf(calculateMutualFollowersCount()));
         }
     }
@@ -389,13 +386,13 @@ public class FriendsProfileController extends BaseController {
     //Değişiklikleri kalıcı hale getirmek için JSON'a yazma metodu
     private void saveData() {
         try {
-            //tüm kullanıcı listesini JSON Array formatına çevir
+            //Tüm kullanıcı listesini JSON Array formatına çevir
             JSONArray newUsersArray = new JSONArray();
             for (User u : this.app.Users) {
                 newUsersArray.put(u.toJSON());
             }
 
-            // DataBase sınıfını kullanarak dosyaya yaz
+            //DataBase sınıfını kullanarak dosyaya yaz
             com.arkadastakibi.model.DataBase db = new com.arkadastakibi.model.DataBase("users.json");
             db.writeData(newUsersArray);
 

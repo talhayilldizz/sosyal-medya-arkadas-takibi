@@ -103,7 +103,7 @@ public class UserProfileController extends BaseController implements IFormKontro
         String username = result.get().trim();
         String profileUrl = "https://www.instagram.com/" + username;
 
-        // Tarayıcıda aç
+        //Tarayıcıda aç
         openLinkInBrowser(profileUrl);
 
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
@@ -290,7 +290,6 @@ public class UserProfileController extends BaseController implements IFormKontro
 
         //Ana kullanıcı listesini dön ve ID eşleşmesi yap
         for (User u : this.app.Users) {
-            //ID listesi bu kullanıcının ID'sini içeriyor mu?
             if (targetIds.contains(u.getId())) {
                 vboxListContent.getChildren().add(createUserRow(u));
             }
@@ -336,10 +335,8 @@ public class UserProfileController extends BaseController implements IFormKontro
         btnVisit.getStyleClass().add("btn-visit-profile");
 
         btnVisit.setOnAction(e -> {
-            //FriendsProfile sayfasına geçiş yap
             FriendsProfileController friendCtrl = changeScene(e, "/com.arkadastakibi/friends-profile.fxml", "Arkadaş Profili");
 
-            //Controller başarıyla yüklendiyse bilgileri gönder
             if (friendCtrl != null) {
                 friendCtrl.setArkadasBilgileri(uName, this.currentUsername);
             }
@@ -351,7 +348,7 @@ public class UserProfileController extends BaseController implements IFormKontro
 
     @FXML
     void AnaSayfayaGeriDon(ActionEvent event) {
-        //Eğer düzenleme kısmı açıksa geri dönüşte bu ekranı kapat, normal profilim ekranına gel
+        //Eğer düzenleme kısmı açıksa geri dönüşte bu ekranı kapat normal profilim ekranına gel
         if (boxEditView.isVisible()) {
             closeEditProfile(null);
             return;
@@ -376,7 +373,6 @@ public class UserProfileController extends BaseController implements IFormKontro
     public void showEditProfile(ActionEvent event) {
         if(currentUserObj == null) return;
 
-        // Mevcut bilgileri Text Field'lara doldur
         txtEditName.setText(currentUserObj.getFirstName());
         txtEditSurname.setText(currentUserObj.getLastName());
         txtEditUsername.setText(currentUserObj.getUsername());
@@ -385,7 +381,7 @@ public class UserProfileController extends BaseController implements IFormKontro
 
         lblEditMessage.setVisible(false);
 
-        // Görünümü değiştir
+        //Görünümü değiştir
         boxProfileView.setVisible(false);
         boxListView.setVisible(false);
         boxEditView.setVisible(true);
@@ -393,7 +389,7 @@ public class UserProfileController extends BaseController implements IFormKontro
 
     @FXML
     public void closeEditProfile(ActionEvent event) {
-        // İptal edince profile geri dön
+        //İptal edince profile geri dön
         boxEditView.setVisible(false);
         boxProfileView.setVisible(true);
     }
@@ -471,10 +467,7 @@ public class UserProfileController extends BaseController implements IFormKontro
                 u.getFollowerUser().remove(Integer.valueOf(deletedUserId));
             }
 
-            //Dosyayı güncelle
             saveAllData();
-
-            //Login ekranına at
             changeScene(event, "/com.arkadastakibi/login.fxml", "Giriş Yap");
         }
     }
@@ -523,6 +516,18 @@ public class UserProfileController extends BaseController implements IFormKontro
 
 
             Circle avatar = new Circle(20, Color.web("#e0e0e0"));
+            try {
+                String gender = this.currentUserObj.getGender();
+                String imgPath = (gender != null && gender.equalsIgnoreCase("Kadin"))
+                        ? "/images/woman.png" : "/images/man.png";
+
+                if (getClass().getResourceAsStream(imgPath) != null) {
+                    avatar.setFill(new ImagePattern(new Image(getClass().getResourceAsStream(imgPath))));
+                }
+            } catch (Exception e) {
+                System.out.println("Avatar yüklenemedi: " + e.getMessage());
+            }
+
             VBox titles = new VBox();
 
             Label nameLbl = new Label(this.currentUserObj.getUsername());

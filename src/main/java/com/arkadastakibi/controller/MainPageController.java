@@ -55,7 +55,7 @@ public class MainPageController extends BaseController {
 
         loadList();
 
-        // Sayfa ilk açıldığında postları yükle
+        //Sayfa ilk açıldığında postları yükle
         loadHomeFeed();
     }
 
@@ -79,7 +79,7 @@ public class MainPageController extends BaseController {
         }
     }
 
-    // Ana Sayfa (Feed) Yükleme Metodu
+    //Ana Sayfa Yükleme Metodu
     @FXML
     public void showHomeFeed(MouseEvent event) {
         loadHomeFeed();
@@ -90,7 +90,7 @@ public class MainPageController extends BaseController {
 
         btnNotifications.setText("🔔  Bildirimler  " + ((loggedUser.getNotificationsCount()==0) ? "" : "("+ loggedUser.getNotificationsCount() + ")"));
 
-        // Paylaşım Alanı Kutusu
+        //Paylaşım Alanı Kutusu
         VBox shareBox = new VBox(10);
         shareBox.getStyleClass().add("card-view");
 
@@ -134,7 +134,7 @@ public class MainPageController extends BaseController {
 
 
 
-        // Paylaşılan postları görüntüleyen fonksiyon
+        //Paylaşılan postları görüntüleyen fonksiyon
         for(Post post : this.app.Posts){
             User postOwner = app.search_to_user(post.getUserId());
             if(postOwner == null){
@@ -151,7 +151,7 @@ public class MainPageController extends BaseController {
         }
     }
 
-    // Post oluşturma fonksiyonu
+    //Post oluşturma fonksiyonu
     private void createPost(String content){
         if(this.loggedUser == null || this.app == null){
             return;
@@ -169,7 +169,7 @@ public class MainPageController extends BaseController {
         app.update();
     }
 
-    // Beğeni butonu güncelleme
+    //Beğeni butonu güncelleme
     private void updateLikeButton(Button btnLike, Post post){
         int likeCount = post.getLikes().size();
         boolean liked = post.getLikes().contains(loggedUser.getId());
@@ -194,7 +194,7 @@ public class MainPageController extends BaseController {
         }
     }
 
-    // Bildirimler Sayfası Metodu
+    //Bildirimler Sayfası Metodu
     @FXML
     public void showNotifications(ActionEvent event) {
         vboxCenterContent.getChildren().clear();
@@ -213,7 +213,6 @@ public class MainPageController extends BaseController {
         Button btnBack = new Button("← Geri");
         btnBack.getStyleClass().add("btn-back");
 
-        // Geri Dön -> Ana Sayfayı Yükle
         btnBack.setOnAction(e -> loadHomeFeed());
 
         Label lblTitle = new Label("Bildirimler");
@@ -222,7 +221,7 @@ public class MainPageController extends BaseController {
         headerBox.getChildren().addAll(btnBack, lblTitle);
         vboxCenterContent.getChildren().add(headerBox);
 
-        // Bildirim Listesi
+        //Bildirim Listesi
         if (this.loggedUser != null && !this.loggedUser.getNotifications().isEmpty()) {
             for (Notification notif : this.loggedUser.getNotifications()) {
                 vboxCenterContent.getChildren().add(createNotificationItem(
@@ -232,7 +231,7 @@ public class MainPageController extends BaseController {
                 ));
             }
         } else {
-            // Hiç bildirim yoksa mesaj göster
+            //Hiç bildirim yoksa mesaj göster
             Label lblEmpty = new Label("Henüz yeni bir bildirim yok.");
             lblEmpty.getStyleClass().add("lbl-placeholder");
             vboxCenterContent.getChildren().add(lblEmpty);
@@ -278,7 +277,7 @@ public class MainPageController extends BaseController {
                 return;
             }
 
-            //beğenildiyse bildirim gönderiyor geri çekerse bildirim siliniyor
+            //Beğenildiyse bildirim gönderiyor geri çekerse bildirim siliniyor
             if(likedNow){
                 sendNotificationToUser(
                         postOwner,
@@ -299,7 +298,7 @@ public class MainPageController extends BaseController {
             btnLike.getStyleClass().add("btn-action");
         }
 
-        //yorum işlemleri
+        //Yorum işlemleri
         int commentCount=post.getComments().size();
         Button btnComment = new Button("Yorum ("+commentCount+")" );
         btnComment.getStyleClass().add("btn-action");
@@ -312,7 +311,7 @@ public class MainPageController extends BaseController {
 
         VBox commentsList = new VBox(5);
 
-        // Tüm yorumları al
+        //Tüm yorumları al
         for(Comment comment : post.getComments()){
             User commentOwner = app.search_to_user(comment.getUserId());
             if(commentOwner == null){

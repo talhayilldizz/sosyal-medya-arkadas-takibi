@@ -19,19 +19,19 @@ import java.nio.file.Paths;
 public abstract class BaseController {
 //-----------------------EKRANLA İLGİLİ FONKSİYONLAR(MESAJLAR, EKRAN DEĞİŞİMİ VB.)-------------------
 
-    protected App app; // - Ortak uygulama nesnesi
+    protected App app; //Ortak uygulama nesnesi
 
     public void setApp(App app) {
         this.app = app;
     }
-    // ENCAPSULATION:Bu metoda sadece miras alan sınıflar (protected) erişebilir.
-    // OVERLOADING 1:Sadece gidilecek yolu verince çalışır.
+    //ENCAPSULATION:Bu metoda sadece miras alan sınıflar erişebilir
+    //OVERLOADING(Yalnız path ile çalışır)
     protected void changeScene(Event event, String fxmlPath) {
         changeScene(event, fxmlPath, null);
     }
 
-    //Generic
-    //OVERLOADING 2: Hem yol hem de başlık verince çalışır.
+    //GENERIC YAPI
+    //OVERLOADING(Hem path hem title ile çalışır)
     protected <T> T changeScene(Event event, String fxmlPath, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -60,7 +60,7 @@ public abstract class BaseController {
         }
     }
 
-    //Ortak uyarı mekanizması
+    //Ortak uyarı
     protected void showMessage(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -68,8 +68,8 @@ public abstract class BaseController {
         alert.setContentText(message);
         alert.showAndWait();
     }
- //-------------------------TAKİPÇİLERLE İLGİLİ FONKSİYONLAR----------------------------------------
 
+ //-------------------------TAKİPÇİLERLE İLGİLİ FONKSİYONLAR----------------------------------------
     protected JSONObject findUserByUsername(String username) {
         String filePath = "users.json";
         File file = new File(filePath);
@@ -91,7 +91,7 @@ public abstract class BaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null; //Kullanıcı bulunamadı
+        return null;
     }
 
     protected boolean isFollowing(String myUsername, String targetUsername) {
@@ -143,11 +143,11 @@ public abstract class BaseController {
     //App sınıfındaki update() metodunu çağırır.
     protected void saveAllData() {
         if (this.app != null) {
-            this.app.update(); // SENİN APP SINIFINDAKİ METODU KULLANIYORUZ
+            this.app.update();
         }
     }
 
-    //BİLDİRİM GÖNDERME METODU
+    //Bildirim gönder
     protected void sendNotificationToUser(com.arkadastakibi.model.User targetUser, String senderName, String message) {
         if (targetUser == null) return;
 
