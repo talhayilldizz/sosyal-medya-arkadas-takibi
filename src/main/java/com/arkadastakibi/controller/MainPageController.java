@@ -28,6 +28,7 @@ public class MainPageController extends BaseController {
     @FXML private VBox vboxFriendsList;
     @FXML private VBox vboxAllUsers;
     @FXML private VBox vboxCenterContent;
+    @FXML private Button btnNotifications;
 
     private User loggedUser;
 
@@ -86,6 +87,8 @@ public class MainPageController extends BaseController {
 
     private void loadHomeFeed() {
         vboxCenterContent.getChildren().clear();
+
+        btnNotifications.setText("🔔  Bildirimler  " + ((loggedUser.getNotificationsCount()==0) ? "" : loggedUser.getNotificationsCount()));
 
         // Paylaşım Alanı Kutusu
         VBox shareBox = new VBox(10);
@@ -195,6 +198,14 @@ public class MainPageController extends BaseController {
     @FXML
     public void showNotifications(ActionEvent event) {
         vboxCenterContent.getChildren().clear();
+
+        for(Notification n : loggedUser.getNotifications()) {
+            n.setFirstSeen(true);
+        }
+
+        saveAllData();
+
+        btnNotifications.setText("🔔  Bildirimler  " + ((loggedUser.getNotificationsCount()==0) ? "" : loggedUser.getNotificationsCount()));
 
         HBox headerBox = new HBox(15);
         headerBox.setAlignment(Pos.CENTER_LEFT);

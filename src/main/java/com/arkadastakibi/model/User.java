@@ -108,6 +108,18 @@ public class User {
         return user;
     }
 
+    public int getNotificationsCount(){
+        int toplam = 0;
+        for(Notification n : this.notifications){
+
+            if(toplam < 9 && n.getFirstSeen()==false){
+                toplam+=1;
+        }
+        }
+        return toplam;
+
+    }
+
     public int getId() {
         return id;
     }

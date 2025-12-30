@@ -19,6 +19,7 @@
         ],
         "email": "talha@gmail.com",
         "notifications": [{
+            "firstSeen": false,
             "time": "23/12 14:40",
             "message": "seni takip etmeye başladı.",
             "senderUsername": "nisasahin"
@@ -68,76 +69,91 @@
         "email": "nisa@gmail.com",
         "notifications": [
             {
+                "firstSeen": false,
                 "time": "30/12 13:54",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "talhayildiz"
             },
             {
+                "firstSeen": false,
                 "time": "30/12 13:52",
                 "message": "gönderini beğendi.",
                 "senderUsername": "talhayildiz"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 22:34",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 22:33",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 17:12",
                 "message": "Gönderine yorum yaptı",
                 "senderUsername": "talhayildiz"
             },
             {
+                "firstSeen": false,
                 "time": "27/12 14:30",
                 "message": "seni takip etmeye başladı.",
                 "senderUsername": "talhayildiz"
@@ -159,6 +175,7 @@
         "followingUser": [],
         "email": "kerem@gmail.com",
         "notifications": [{
+            "firstSeen": false,
             "time": "30/12 13:42",
             "message": "seni takip etmeye başladı.",
             "senderUsername": "talhayildiz"
@@ -180,34 +197,34 @@
         "email": "emirpeker@gmail.com",
         "notifications": [
             {
+                "firstSeen": true,
                 "time": "30/12 13:53",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "talhayildiz"
             },
             {
+                "firstSeen": true,
                 "time": "28/12 11:37",
                 "message": "Gönderine yorum yaptı",
                 "senderUsername": "talhayildiz"
             },
             {
+                "firstSeen": true,
                 "time": "27/12 22:33",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": true,
                 "time": "27/12 17:25",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
             },
             {
+                "firstSeen": true,
                 "time": "27/12 17:15",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "pekerinyo"
-            },
-            {
-                "time": "27/12 17:13",
-                "message": "Gönderine yorum yaptı",
-                "senderUsername": "nisanursahin"
             }
         ],
         "username": "pekerinyo"
