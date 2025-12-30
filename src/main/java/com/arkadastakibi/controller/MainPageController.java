@@ -88,7 +88,7 @@ public class MainPageController extends BaseController {
     private void loadHomeFeed() {
         vboxCenterContent.getChildren().clear();
 
-        btnNotifications.setText("🔔  Bildirimler  " + ((loggedUser.getNotificationsCount()==0) ? "" : loggedUser.getNotificationsCount()));
+        btnNotifications.setText("🔔  Bildirimler  " + ((loggedUser.getNotificationsCount()==0) ? "" : "("+ loggedUser.getNotificationsCount() + ")"));
 
         // Paylaşım Alanı Kutusu
         VBox shareBox = new VBox(10);
@@ -205,8 +205,7 @@ public class MainPageController extends BaseController {
 
         saveAllData();
 
-        btnNotifications.setText("🔔  Bildirimler  " + ((loggedUser.getNotificationsCount()==0) ? "" : loggedUser.getNotificationsCount()));
-
+        btnNotifications.setText("🔔  Bildirimler  " + ((loggedUser.getNotificationsCount()==0) ? "" : "("+ loggedUser.getNotificationsCount() + ")"));
         HBox headerBox = new HBox(15);
         headerBox.setAlignment(Pos.CENTER_LEFT);
         headerBox.setPadding(new Insets(0, 0, 20, 0));
