@@ -68,6 +68,16 @@
         "email": "nisa@gmail.com",
         "notifications": [
             {
+                "time": "30/12 13:54",
+                "message": "Gönderinizi Beğendi.",
+                "senderUsername": "talhayildiz"
+            },
+            {
+                "time": "30/12 13:52",
+                "message": "gönderini beğendi.",
+                "senderUsername": "talhayildiz"
+            },
+            {
                 "time": "27/12 22:34",
                 "message": "Gönderinizi Beğendi.",
                 "senderUsername": "nisanursahin"
@@ -148,7 +158,11 @@
         "id": 4,
         "followingUser": [],
         "email": "kerem@gmail.com",
-        "notifications": [],
+        "notifications": [{
+            "time": "30/12 13:42",
+            "message": "seni takip etmeye başladı.",
+            "senderUsername": "talhayildiz"
+        }],
         "username": "keremkaynar"
     },
     {
@@ -165,6 +179,11 @@
         "followingUser": [],
         "email": "emirpeker@gmail.com",
         "notifications": [
+            {
+                "time": "30/12 13:53",
+                "message": "Gönderinizi Beğendi.",
+                "senderUsername": "talhayildiz"
+            },
             {
                 "time": "28/12 11:37",
                 "message": "Gönderine yorum yaptı",

@@ -20,7 +20,10 @@
         "postDate": "27/12/2025",
         "postId": 6,
         "userId": 5,
-        "likes": [5]
+        "likes": [
+            5,
+            1
+        ]
     },
     {
         "comments": [],
@@ -28,6 +31,14 @@
         "postDate": "29/12/2025",
         "postId": 7,
         "userId": 3,
+        "likes": [1]
+    },
+    {
+        "comments": [],
+        "postContent": "deneme",
+        "postDate": "30/12/2025",
+        "postId": 8,
+        "userId": 1,
         "likes": []
     }
 ]

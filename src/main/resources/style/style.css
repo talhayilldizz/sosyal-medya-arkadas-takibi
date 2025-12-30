@@ -154,57 +154,200 @@
     -fx-font-size: 11px;
 }
 
-/* --- Profil Sayfası Takipçi/Takip Edilen Listesi --- */
-.user-list-row {
-    -fx-padding: 10;
-    -fx-border-color: #f0f0f0;
-    -fx-border-width: 0 0 1 0;
-    -fx-background-color: white;
+/* --- GENEL AYARLAR --- */
+.root {
+    -fx-font-family: 'Segoe UI', 'Roboto', sans-serif;
+    -fx-background-color: #f4f6f8;
 }
 
-.user-list-name {
-    -fx-font-weight: bold;
-    -fx-text-fill: #212529;
-}
-
-.user-list-username {
-    -fx-text-fill: #868686;
-    -fx-font-size: 12px;
-}
-
-.btn-visit-profile {
+.scroll-pane, .scroll-pane .viewport {
     -fx-background-color: transparent;
-    -fx-text-fill: #1e88e5;
-    -fx-cursor: hand;
-    -fx-font-weight: bold;
 }
 
-/* --- Profil Sayfası Postlarım Bölümü --- */
+/* --- KART TASARIMLARI --- */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 20, 0, 0, 5);
+    -fx-padding: 30;
+}
+
+/* --- YENİ: SOFT GRADIENT PROFİL KARTI --- */
+/* --- YENİ: DAHA GÜZEL GRADIENT PROFİL KARTI --- */
+.profile-gradient-card {
+    /* Sol Üst: Çok Koyu Lacivert (#141E30) -> Sağ Alt: Metalik Açık Mavi (#243B55) */
+    /* Bu renkler "Royal Navy" temasıdır, çok şık durur. */
+    -fx-background-color: linear-gradient(to bottom right, #141E30, #4CA1AF);
+
+    /* Alternatif (Daha canlı mavi istersen): */
+    /* -fx-background-color: linear-gradient(to bottom right, #1e3c72, #2a5298); */
+
+    -fx-background-radius: 25;
+    /* Kart koyu olduğu için gölgeyi siyahımsı yaptık */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 20, 0, 0, 8);
+    -fx-padding: 40 30;
+}
+
+/* --- YAZI RENKLERİ (Tekrar Beyaz'a döndü) --- */
+/* Arka plan artık tamamen koyu/mavi olduğu için beyaz en iyi okunur */
+
+.profile-name {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 1);
+}
+
+.profile-email {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ecf0f1; /* Kırık Beyaz */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 3, 0, 0, 1);
+}
+
+.profile-bio {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-font-style: italic;
+    -fx-line-spacing: 3;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 3, 0, 0, 1);
+}
+
+/* --- BUTONLAR --- */
+.btn-action {
+    -fx-background-radius: 12;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 10 20;
+    -fx-transition: all 0.3s;
+}
+.btn-primary {
+    -fx-background-color: white;
+    -fx-text-fill: #0984e3; /* Mavi yazı */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+.btn-primary:hover {
+    -fx-background-color: #f1f2f6;
+}
+
+.btn-danger {
+    -fx-background-color: rgba(255, 255, 255, 0.6);
+    -fx-text-fill: #d63031;
+    -fx-border-color: #d63031;
+    -fx-border-radius: 12;
+}
+.btn-danger:hover {
+    -fx-background-color: #ff7675;
+    -fx-text-fill: white;
+}
+
+.btn-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: #b2bec3;
+    -fx-border-radius: 12;
+    -fx-text-fill: #636e72;
+}
+
+/* --- YENİ: İKONLU SOSYAL MEDYA BUTONLARI --- */
+.social-icon-btn {
+    -fx-background-color: white;
+    -fx-background-radius: 50; /* Tam yuvarlak */
+    -fx-cursor: hand;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-max-width: 50px;
+    -fx-max-height: 50px;
+    -fx-padding: 0; /* İç boşluğu sıfırla ki resim tam otursun */
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+.social-icon-btn:hover {
+    -fx-translate-y: -3; /* Üzerine gelince yukarı zıplasın */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 8, 0, 0, 4);
+}
+
+/* --- İSTATİSTİK KARTLARI --- */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 15;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);
+}
+.stat-card:hover {
+    -fx-translate-y: -2;
+}
+.stat-number {
+    -fx-font-size: 24px;
+    -fx-font-weight: 900;
+}
+.stat-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #636e72;
+    -fx-font-weight: bold;
+    -fx-text-transform: uppercase;
+}
+
+/* --- DİĞERLERİ (Input, Post vb.) --- */
+.modern-input {
+    -fx-background-color: transparent;
+    -fx-border-color: #b2bec3;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 5;
+    -fx-text-fill: #2d3436;
+}
 .post-box {
     -fx-background-color: white;
     -fx-background-radius: 15;
     -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2);
 }
-
+.post-user-name { -fx-font-weight: 800; -fx-text-fill: #2d3436; }
+.post-content { -fx-text-fill: #4a4a4a; }
 .btn-delete-post {
     -fx-background-color: transparent;
-    -fx-text-fill: #e53935; /* Kırmızı renk */
+    -fx-text-fill: #dfe6e9;
+    -fx-cursor: hand;
     -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}
+.btn-delete-post:hover {
+    -fx-text-fill: #ff7675;
+    -fx-background-color: rgba(255, 118, 117, 0.1);
+    -fx-background-radius: 5;
+}
+.btn-visit-profile {
+    -fx-background-color: #dfe6e9;
+    -fx-background-radius: 20;
+    -fx-text-fill: #636e72;
+    -fx-font-size: 11px;
+    -fx-padding: 5 15;
     -fx-cursor: hand;
 }
-
-.post-user-name {
+.btn-visit-profile:hover {
+    -fx-background-color: #0984e3;
+    -fx-text-fill: white;
+}
+/* --- INSTA TARZI BEĞENİ BUTONU --- */
+.btn-like-custom {
+    -fx-background-color: transparent; /* Arka plan yok */
+    -fx-cursor: hand;
+    -fx-padding: 5 10 5 0; /* Hafif boşluk */
+    -fx-text-fill: #262626; /* Sayı rengi (Koyu gri) */
     -fx-font-weight: bold;
-    -fx-text-fill: #212529;
-    -fx-font-size: 15px;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
 }
 
-.post-time {
-    -fx-text-fill: #868686;
-    -fx-font-size: 12px;
+.btn-like-custom:hover {
+    -fx-background-color: #f0f2f5; /* Üzerine gelince çok hafif gri olsun */
+    -fx-background-radius: 5;
 }
 
-.post-content {
-    -fx-text-fill: #212529;
+/* Yorum butonu için stil */
+.btn-comment-custom {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-text-fill: #262626;
+    -fx-font-weight: bold;
     -fx-font-size: 14px;
 }

@@ -27,7 +27,6 @@ public class MainPageController extends BaseController {
     @FXML private Circle imgAvatar;
     @FXML private VBox vboxFriendsList;
     @FXML private VBox vboxAllUsers;
-
     @FXML private VBox vboxCenterContent;
 
     private User loggedUser;
@@ -172,7 +171,7 @@ public class MainPageController extends BaseController {
         int likeCount = post.getLikes().size();
         boolean liked = post.getLikes().contains(loggedUser.getId());
 
-        btnLike.setText((liked ? "❤️ Beğenildi " : "Beğen ") + "(" + likeCount + ")");
+        btnLike.setText((liked ? "❤ Beğenildi " : "Beğen ") + "(" + likeCount + ")");
         btnLike.getStyleClass().clear(); // Önceki sınıfları temizle
         btnLike.getStyleClass().add("btn-action"); // CSS sınıfını ekle
     }
