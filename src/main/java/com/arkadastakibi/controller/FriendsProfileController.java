@@ -422,6 +422,17 @@ public class FriendsProfileController extends BaseController {
             HBox header = new HBox(10);
             header.setAlignment(Pos.CENTER_LEFT);
             Circle avatar = new Circle(20, Color.web("#e0e0e0"));
+            try {
+                String gender = this.targetUserObj.getGender();
+                String imgPath = (gender != null && gender.equalsIgnoreCase("Kadin"))
+                        ? "/images/woman.png" : "/images/man.png";
+
+                if (getClass().getResourceAsStream(imgPath) != null) {
+                    avatar.setFill(new ImagePattern(new Image(getClass().getResourceAsStream(imgPath))));
+                }
+            } catch (Exception e) {
+                System.out.println("Avatar yüklenemedi: " + e.getMessage());
+            }
             VBox titles = new VBox();
             Label nameLbl = new Label(this.targetUserObj.getUsername());
             nameLbl.setStyle("-fx-font-weight: bold; -fx-text-fill: #212529; -fx-font-size: 15px;");

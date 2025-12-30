@@ -54,6 +54,30 @@ public class RegisterPageController extends BaseController implements Initializa
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnRegister.setOnAction(event -> handleRegister());
         linkLogin.setOnAction(event -> navigateToLogin(event));
+
+        //İsim ve soyisimde sadece harfler ve boşluk kabul et
+        txtFirstName.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZçÇğĞıİöÖşŞüÜ\\s]*")) {
+                txtFirstName.setText(oldValue);
+            }
+        });
+        txtLastName.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZçÇğĞıİöÖşŞüÜ\\s]*")) {
+                txtLastName.setText(oldValue);
+            }
+        });
+
+        //Kullanıcı adında sadece İngilizce harf, sayı ve alt çizgi kabul
+        txtUsername.textProperty().addListener((observable, oldValue, newValue) -> {
+            String lowerCaseValue = newValue.toLowerCase(java.util.Locale.ENGLISH);
+
+            if (!lowerCaseValue.matches("[a-z0-9_]*")) {
+                txtUsername.setText(oldValue);
+            }
+            else if (!newValue.equals(lowerCaseValue)) {
+                txtUsername.setText(lowerCaseValue);
+            }
+        });
     }
 
     @Override

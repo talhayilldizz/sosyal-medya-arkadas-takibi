@@ -197,6 +197,18 @@
         "email": "emirpeker@gmail.com",
         "notifications": [
             {
+                "firstSeen": false,
+                "time": "30/12 20:30",
+                "message": "seni takip etmeye başladı.",
+                "senderUsername": "nisanursahin"
+            },
+            {
+                "firstSeen": false,
+                "time": "30/12 20:30",
+                "message": "seni takip etmeye başladı.",
+                "senderUsername": "nisanursahin"
+            },
+            {
                 "firstSeen": true,
                 "time": "30/12 13:53",
                 "message": "Gönderinizi Beğendi.",

@@ -40,5 +40,13 @@
         "postId": 8,
         "userId": 1,
         "likes": []
+    },
+    {
+        "comments": [],
+        "postContent": "das",
+        "postDate": "30/12/2025",
+        "postId": 9,
+        "userId": 6,
+        "likes": []
     }
 ]
