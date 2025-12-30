@@ -44,7 +44,15 @@ public abstract class BaseController {
             }
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            double currentWidth = stage.getWidth();
+            double currentHeight = stage.getHeight();
+            boolean isMaximized = stage.isMaximized();
+
             stage.setScene(new Scene(root));
+
+            stage.setWidth(currentWidth);
+            stage.setHeight(currentHeight);
+            stage.setMaximized(isMaximized);
 
             if (title != null) {
                 stage.setTitle(title);
