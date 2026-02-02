@@ -1,161 +1,5 @@
 [
     {
-        "lastName": "İskar",
-        "instagramLink": "https://www.instagram.com/burakiskr27_",
-        "gender": "Erkek",
-        "bio": "Merhaba! Bu uygulamayı kullanıyorum.",
-        "tiktokLink": "",
-        "firstName": "Burak",
-        "password": "1234",
-        "followerUser": [
-            3,
-            1
-        ],
-        "twitterLink": "",
-        "id": 2,
-        "followingUser": [
-            3,
-            1
-        ],
-        "email": "burak@gmail.com",
-        "notifications": [],
-        "username": "burakiskar"
-    },
-    {
-        "lastName": "Sahin",
-        "instagramLink": "",
-        "gender": "Kadın",
-        "bio": "bu proje bitsin artik",
-        "tiktokLink": "",
-        "firstName": "Nisanur",
-        "password": "1234",
-        "followerUser": [
-            2,
-            1
-        ],
-        "twitterLink": "",
-        "id": 3,
-        "followingUser": [
-            2,
-            1
-        ],
-        "email": "nisa@gmail.com",
-        "notifications": [
-            {
-                "firstSeen": true,
-                "time": "30/12 13:54",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "talhayildiz"
-            },
-            {
-                "firstSeen": true,
-                "time": "30/12 13:52",
-                "message": "gönderini beğendi.",
-                "senderUsername": "talhayildiz"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 22:34",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 22:33",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 17:25",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 17:25",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 17:25",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 17:25",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 17:25",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 17:25",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 17:25",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 17:25",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 17:25",
-                "message": "Gönderinizi Beğendi.",
-                "senderUsername": "nisanursahin"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 17:12",
-                "message": "Gönderine yorum yaptı",
-                "senderUsername": "talhayildiz"
-            },
-            {
-                "firstSeen": true,
-                "time": "27/12 14:30",
-                "message": "seni takip etmeye başladı.",
-                "senderUsername": "talhayildiz"
-            }
-        ],
-        "username": "nisanursahin"
-    },
-    {
-        "lastName": "Kaynar",
-        "instagramLink": "",
-        "gender": "Erkek",
-        "bio": "",
-        "tiktokLink": "",
-        "firstName": "Kerem",
-        "password": "1234",
-        "followerUser": [],
-        "twitterLink": "",
-        "id": 4,
-        "followingUser": [],
-        "email": "kerem@gmail.com",
-        "notifications": [{
-            "firstSeen": false,
-            "time": "30/12 13:42",
-            "message": "seni takip etmeye başladı.",
-            "senderUsername": "talhayildiz"
-        }],
-        "username": "keremkaynar"
-    },
-    {
         "lastName": "peker",
         "instagramLink": "",
         "gender": "Erkek",
@@ -163,20 +7,26 @@
         "tiktokLink": "",
         "firstName": "emir",
         "password": "1234",
-        "followerUser": [],
+        "followerUser": [6],
         "twitterLink": "",
         "id": 5,
         "followingUser": [],
         "email": "emirpeker@gmail.com",
         "notifications": [
             {
-                "firstSeen": false,
+                "firstSeen": true,
+                "time": "02/02 20:08",
+                "message": "seni takip etmeye başladı.",
+                "senderUsername": "burak"
+            },
+            {
+                "firstSeen": true,
                 "time": "30/12 20:30",
                 "message": "seni takip etmeye başladı.",
                 "senderUsername": "nisanursahin"
             },
             {
-                "firstSeen": false,
+                "firstSeen": true,
                 "time": "30/12 20:30",
                 "message": "seni takip etmeye başladı.",
                 "senderUsername": "nisanursahin"
@@ -213,5 +63,26 @@
             }
         ],
         "username": "pekerinyo"
+    },
+    {
+        "lastName": "iskar",
+        "instagramLink": "",
+        "gender": "Erkek",
+        "bio": "",
+        "tiktokLink": "",
+        "firstName": "burak",
+        "password": "12345678",
+        "followerUser": [],
+        "twitterLink": "",
+        "id": 6,
+        "followingUser": [5],
+        "email": "burak@gmail.com",
+        "notifications": [{
+            "firstSeen": false,
+            "time": "02/02 20:08",
+            "message": "Gönderinizi Beğendi.",
+            "senderUsername": "pekerinyo"
+        }],
+        "username": "burak"
     }
 ]
