@@ -1,32 +1,5 @@
 [
     {
-        "lastName": "Yıldız",
-        "instagramLink": "",
-        "gender": "Erkek",
-        "bio": "marmara-ceng",
-        "tiktokLink": "",
-        "firstName": "Talha",
-        "password": "1234",
-        "followerUser": [
-            2,
-            3
-        ],
-        "twitterLink": "",
-        "id": 1,
-        "followingUser": [
-            2,
-            3
-        ],
-        "email": "talha@gmail.com",
-        "notifications": [{
-            "firstSeen": false,
-            "time": "23/12 14:40",
-            "message": "seni takip etmeye başladı.",
-            "senderUsername": "nisasahin"
-        }],
-        "username": "talhayildiz"
-    },
-    {
         "lastName": "İskar",
         "instagramLink": "https://www.instagram.com/burakiskr27_",
         "gender": "Erkek",
